@@ -1,15 +1,15 @@
 
 {
-"bot-name": "MALVIN-XD",
-  "description": "ᴊᴀᴠᴀsᴄʀɪᴘᴛ ᴡʜᴀᴛsᴀᴘᴘ ʙᴏᴛ ᴄʀᴇᴀᴛᴇᴅ ʙʏ ᴍᴀʟᴠɪɴ ᴋɪɴɢ",
-  "logo": "https://files.catbox.moe/juxfce.jpg",
+"bot-name": "Drakonis-MD",
+  "description": "ᴊᴀᴠᴀsᴄʀɪᴘᴛ ᴡʜᴀᴛsᴀᴘᴘ ʙᴏᴛ ᴄʀᴇᴀᴛᴇᴅ ʙʏ dev sung",
+  "logo": "https://files.catbox.moe/ygfz2e.jpg",
   "keywords": ["bot"],
-  "documentation-link": "https://new-session-lfgw.onrender.com/",
-    "owner-verification":"malvink003@gmail.com",
+  "documentation-link": "https://suho-pair3.onrender.com/",
+    "owner-verification":"sungdev00@gmail.com",
   
     "env": {
       "SESSION_ID": {
-        "description": "Put your SESSION_ID here. It starts with malvin~",
+        "description": "Put your SESSION_ID here. It starts with drakonis~",
         "value":"",
         "required": true
         
@@ -18,7 +18,7 @@
     "OWNER_NUMBER": {
       "description": "Enter owner number",
       "required": false,
-      "value": "263714757857"
+      "value": "12363621958"
 
     }  
   }
