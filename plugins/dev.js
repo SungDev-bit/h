@@ -59,7 +59,7 @@ malvin({
           externalAdReply: {
             title: "draĸonιѕ-мd",
             body: "Created with ❤️ by Dev Sung",
-            thumbnailUrl: 'https://files.catbox.moe/ygfz2e.jpg',
+            thumbnailUrl: 'https://files.catbox.moe/gbj8gz.jpg',
             mediaType: 1,
             renderSmallerThumbnail: true,
             showAdAttribution: true,
