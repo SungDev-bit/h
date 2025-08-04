@@ -12,7 +12,7 @@ malvin({
     filename: __filename,
 },
 async (conn, mek, m, { from, reply }) => {
-    const githubRepoURL = 'https://github.com/NaCkS-ai/Drakonis-MD';
+    const githubRepoURL = 'https://github.com/NaCkS-ai/Cyberia-MD';
 
     try {
         const [, username, repoName] = githubRepoURL.match(/github\.com\/([^/]+)\/([^/]+)/);
@@ -23,7 +23,7 @@ async (conn, mek, m, { from, reply }) => {
         const repoData = await response.json();
 
         const formattedInfo = `
-╭━━〔 *draĸonιѕ-мd 𝗥𝗘𝗣𝗢* 🚀 〕━⬣
+╭━━〔 *Cyberia-мd 𝗥𝗘𝗣𝗢* 🚀 〕━⬣
 ┃ 𖠌  *ɴᴀᴍᴇ*        : ${repoData.name}
 ┃ ⭐  *sᴛᴀʀs*       : ${repoData.stargazers_count}
 ┃ 🍴  *ғᴏʀᴋs*       : ${repoData.forks_count}
@@ -34,7 +34,7 @@ async (conn, mek, m, { from, reply }) => {
 ╰━━━━━━━━━━━━━━━⬣`;
 
         await conn.sendMessage(from, {
-            image: { url: 'https://files.catbox.moe/gbj8gz.jpg' },
+            image: { url: 'https://files.catbox.moe/lvomei.jpg' },
             caption: formattedInfo,
             contextInfo: {
                 mentionedJid: [m.sender],
@@ -42,7 +42,7 @@ async (conn, mek, m, { from, reply }) => {
                 isForwarded: true,
                 forwardedNewsletterMessageInfo: {
                     newsletterJid: '120363402507750390@newsletter',
-                    newsletterName: 'draĸonιѕ-мd-ʀᴇᴘᴏ',
+                    newsletterName: 'Cyberia-мd-ʀᴇᴘᴏ',
                     serverMessageId: 143
                 }
             }
