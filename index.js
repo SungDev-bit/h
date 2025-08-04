@@ -91,7 +91,7 @@ const port = process.env.PORT || 7860;
 
 //=========SESSION-AUTH=====================
 
-const sessionDir = path.join(__dirname, 'sessions');
+const sessionDir = path.join(__dirname, './sessions');
 const credsPath = path.join(sessionDir, 'creds.json');
 
 // Create session directory if it doesn't exist
