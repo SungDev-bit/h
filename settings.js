@@ -18,7 +18,7 @@ module.exports = {
   CHATBOT: getConfig("CHATBOT") || "on", // Chatbot mode: on/off
   BOT_NAME: process.env.BOT_NAME || getConfig("BOT_NAME") || "Cyberia-MD", // Bot display name
   MODE: getConfig("MODE") || process.env.MODE || "private", // Bot mode: public/private/group/inbox
-  REPO: process.env.REPO || "https://github.com/NaCkS-ai/Drakonis-MD", // Bot GitHub repo dont change this❗️
+  REPO: process.env.REPO || "https://github.com/NaCkS-ai/Cyberia-MD", // Bot GitHub repo dont change this❗️
   BAILEYS: process.env.BAILEYS || "@whiskeysockets/baileys", // Baileys version
 
   // ===== OWNER & DEVELOPER SETTINGS =====
