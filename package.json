@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "THE BEST BOT IN THE UNIVERSE",
   "main": "index.js",
-"type": "module",
   "scripts": {
     "start": "pm2 start index.js --deep-monitoring --attach --name Cyberia",
     "stop": "pm2 stop Cyberia",
