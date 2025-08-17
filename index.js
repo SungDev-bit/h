@@ -8,7 +8,7 @@ process.on("unhandledRejection", (reason, p) => {
 });
 
 
-// MALVIN XD CREATED BY MALVIN KING 🤴 
+// Cyberia-MD CREATED BY Dev Sung 🔮
 
 const axios = require('axios')
 const config = require('./settings')
@@ -91,46 +91,57 @@ const port = process.env.PORT || 7860;
 
 //=========SESSION-AUTH=====================
 
-const sessionDir = path.join(__dirname, './sessions');
-const credsPath = path.join(sessionDir, 'creds.json');
+const sessionDir = path.join(__dirname, "./sessions");
+const credsPath = path.join(sessionDir, "creds.json");
 
-// Create session directory if it doesn't exist
-if (!fs.existsSync(sessionDir)) {
-    fs.mkdirSync(sessionDir, { recursive: true });
+if (!fsSync.existsSync(sessionDir)) {
+  fsSync.mkdirSync(sessionDir, { recursive: true });
 }
 
 async function loadSession() {
-    try {
-        if (!config.SESSION_ID) {
-            console.log(chalk.red('No SESSION_ID provided - QR login will be generated'));
-            return null;
-        }
-
-        console.log(chalk.yellow('[ ⏳ ] Downloading creds data...'));
-        console.log(chalk.cyan('[ 🆔️ ] Downloading MEGA.nz session...'));
-        
-        // Remove "malvin~" prefix if present, otherwise use full SESSION_ID
-        const megaFileId = config.SESSION_ID.startsWith('cyberia~') 
-            ? config.SESSION_ID.replace("cyberia~", "") 
-            : config.SESSION_ID;
-
-        const filer = File.fromURL(`https://mega.nz/file/${megaFileId}`);
-            
-        const data = await new Promise((resolve, reject) => {
-            filer.download((err, data) => {
-                if (err) reject(err);
-                else resolve(data);
-            });
-        });
-        
-        fs.writeFileSync(credsPath, data);
-        console.log(chalk.green('[ ✅ ] MEGA session downloaded successfully'));
-        return JSON.parse(data.toString());
-    } catch (error) {
-        console.error('❌ Error loading session:', error.message);
-        console.log(chalk.green('Will generate QR code instead'));
-        return null;
+  try {
+    if (!config.SESSION_ID) {
+      console.log(chalk.red("No SESSION_ID provided - Falling back to QR or pairing code"));
+      return null;
     }
+
+    if (config.SESSION_ID.startsWith("cyberia~")) {
+      console.log(chalk.yellow("[ ⏳ ] Decoding base64 session..."));
+      const base64Data = config.SESSION_ID.replace("cyberia~", "");
+      if (!/^[A-Za-z0-9+/=]+$/.test(base64Data)) {
+        throw new Error("Invalid base64 format in SESSION_ID");
+      }
+      const decodedData = Buffer.from(base64Data, "base64");
+      let sessionData;
+      try {
+        sessionData = JSON.parse(decodedData.toString("utf-8"));
+      } catch (error) {
+        throw new Error("Failed to parse decoded base64 session data: " + error.message);
+      }
+      fsSync.writeFileSync(credsPath, decodedData);
+      console.log(chalk.green("[ ✅ ] Base64 session decoded and saved successfully"));
+      return sessionData;
+    } else if (config.SESSION_ID.startsWith("cyberia~")) {
+      console.log(chalk.yellow("[ ⏳ ] Downloading MEGA.nz session..."));
+      const megaFileId = config.SESSION_ID.replace("cyberia~", "");
+      const filer = File.fromURL(`https://mega.nz/file/${megaFileId}`);
+      const data = await new Promise((resolve, reject) => {
+        filer.download((err, data) => {
+          if (err) reject(err);
+          else resolve(data);
+        });
+      });
+      fsSync.writeFileSync(credsPath, data);
+      console.log(chalk.green("[ ✅ ] MEGA session downloaded successfully"));
+      return JSON.parse(data.toString());
+    } else {
+      throw new Error("Invalid SESSION_ID format. Use 'cyberia~' for base64 or 'cyberia~' for MEGA.nz");
+    }
+  } catch (error) {
+    console.error(chalk.red("❌ Error loading session:", error.message));
+    console.log(chalk.green("Will attempt QR code "));
+    return null;
+  }
 }
 
 //=======SESSION-AUTH==============
