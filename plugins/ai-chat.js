@@ -10,7 +10,7 @@ malvin({
     react: "🤖",
     filename: __filename
 },
-async (conn, mek, m, { from, args, q, reply, react: doReact }) => {
+async (malvin, mek, m, { from, args, q, reply, react: doReact }) => {
     try {
         if (!q) return reply("Please provide a message for the AI.\nExample: `.ai Hello`");
 
@@ -40,7 +40,7 @@ malvin({
     react: "🧠",
     filename: __filename
 },
-async (conn, mek, m, { from, args, q, reply, react: doReact }) => {
+async (malvin, mek, m, { from, args, q, reply, react: doReact }) => {
     try {
         if (!q) return reply("Please provide a message for OpenAI.\nExample: `.openai Hello`");
 
@@ -70,7 +70,7 @@ malvin({
     react: "🧠",
     filename: __filename
 },
-async (conn, mek, m, { from, args, q, reply, react: doReact }) => {
+async (malvin, mek, m, { from, args, q, reply, react: doReact }) => {
     try {
         if (!q) return reply("Please provide a message for DeepSeek AI.\nExample: `.deepseek Hello`");
 
