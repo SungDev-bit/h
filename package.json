@@ -3,6 +3,7 @@
   "version": "2.5.0",
   "description": "A WhatsApp Bot Created By Dev Sung",
   "main": "index.js",
+  "type" : "module",
   "engines": {
     "node": ">=20.x",
     "npm": ">=10.x"
@@ -13,7 +14,7 @@
     "restart": "pm2 restart Cyberia"
   },
   "dependencies": {
-    "@whiskeysockets/baileys": "github:EdderBot02/bail",
+    "@whiskeysockets/baileys": "github:XdKing2/Malvin-Baileys",
      "axios": "^1.7.9",
     "@adiwajshing/keyed-db": "latest",
     "@dark-yasiya/yt-dl.js": "1.0.5",
