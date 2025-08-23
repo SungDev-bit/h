@@ -11,7 +11,7 @@ malvin({
     category: "info",
     filename: __filename,
 },
-async (conn, mek, m, { from, reply }) => {
+async (malvin, mek, m, { from, reply }) => {
     const githubRepoURL = 'https://github.com/NaCkS-ai/Cyberia-MD;
 
     try {
