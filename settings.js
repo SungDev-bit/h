@@ -24,10 +24,10 @@ module.exports = {
   BAILEYS: process.env.BAILEYS || "@whiskeysockets/baileys", // WhatsApp library
 
   // ===== OWNER & DEVELOPER SETTINGS =====
-  OWNER_NUMBER: settings.OWNER_NUMBER || process.env.OWNER_NUMBER || "12363621958", // Owner's WhatsApp number
+  OWNER_NUMBER: settings.OWNER_NUMBER || process.env.OWNER_NUMBER || "27649342626", // Owner's WhatsApp number
   OWNER_NAME: getConfig("OWNER_NAME") || process.env.OWNER_NAME || "Dev Sung", // Owner's name
-  DEV: process.env.DEV || "12363621958", // Developer's contact
-  DEVELOPER_NUMBER: '12363621958@s.whatsapp.net', // Developer's WhatsApp ID
+  DEV: process.env.DEV || "27649342626", // Developer's contact
+  DEVELOPER_NUMBER: '27649342626@s.whatsapp.net', // Developer's WhatsApp ID
   
   
   MENU_AUDIO_URL: getConfig("MENU_AUDIO_URL") || process.env.MENU_AUDIO_URL || 'https://files.catbox.moe/vkvci3.mp3', // Menu audio
