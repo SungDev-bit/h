@@ -1,4 +1,4 @@
-/*
+
 
 const config = require('../settings');
 const moment = require('moment-timezone');
@@ -122,4 +122,4 @@ malvin({
 });
 
 
-*/
+
