@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const { getConfig } = require('./lib/configdb');
-const settings = require('./settingss');
+const settings = require('./config');
 
 if (fs.existsSync(path.resolve('config.env'))) {
   require('dotenv').config({ path: path.resolve('config.env') });
