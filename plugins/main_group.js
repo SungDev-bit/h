@@ -23,7 +23,7 @@ const REPLY_MSGS = {
 const sendCustomMessage = async (malvin, from, message, mek, mentions = []) => {
   try {
     await malvin.sendMessage(from, {
-      image: { url: config.MENU_IMAGE_URL || 'https://files.catbox.moe/lvomei.jpg },
+      image: { url: config.MENU_IMAGE_URL || 'https://files.catbox.moe/lvomei.jpg' },
       caption: message,
       contextInfo: {
         mentionedJid: mentions.length ? mentions : [mek.sender],
