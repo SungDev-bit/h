@@ -38,7 +38,7 @@ async (malvin, mek, m, { from, reply }) => {
 
 `;
 
-        await conn.sendMessage(from, {
+        await malvin.sendMessage(from, {
             image: { url: 'https://files.catbox.moe/pbryyb.jpg' },
             caption: formattedInfo,
             contextInfo: {
@@ -54,7 +54,7 @@ async (malvin, mek, m, { from, reply }) => {
         }, { quoted: mek });
 
         // Send audio intro
-        await conn.sendMessage(from, {
+        await malvin.sendMessage(from, {
       audio: { url: 'https://files.catbox.moe/z47dgd.mp3' },
       mimetype: 'audio/mp4',
       ptt: true
