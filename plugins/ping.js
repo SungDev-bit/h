@@ -87,7 +87,7 @@ malvin({
         // Owner & bot name
         const ownerName = config.OWNER_NAME || 'Dev Sung';
         const botName = config.BOT_NAME || 'Cyberia-MD;
-        const repoLink = config.REPO || 'https://github.com/NaCkS-ai/Cyberia-MD;
+        const repoLink = config.REPO || 'https://github.com/NaCkS-ai/Cyberia-MD';
 
         // Final output
         const pingMsg = `
