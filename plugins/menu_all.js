@@ -31,7 +31,7 @@ malvin({
 
         // Menu header with tiny caps
         let menu = `
-╭═✦〔 🤖 *${toTinyCaps(config.BOT_NAME || 'Cyberia Bot')}* 〕✦═╮
+╭═✦〔 🤖 *${toTinyCaps(config.BOT_NAME || 'Cyberia md')}* 〕✦═╮
 │
 │ 👤 ${toTinyCaps('User')}: @${sender.split('@')[0]}
 │ ⏰ ${toTinyCaps('Time')}: ${time}
@@ -41,8 +41,8 @@ malvin({
 │ 📡 ${toTinyCaps('Platform')}: ${os.platform()}
 │ ⌨️ ${toTinyCaps('Prefix')}: [ ${prefix} ]
 │ 🧩 ${toTinyCaps('Plugins')}: ${commands.length}
-│ 👑 ${toTinyCaps('Dev')}: ${config.OWNER_NAME || toTinyCaps('Dev-Sung')}
-│ 🚀 ${toTinyCaps('Version')}: ${config.version || '2.5.0'}
+│ 👑 ${toTinyCaps('Dev')}: ${config.OWNER_NAME || toTinyCaps('Dev Sung')}
+│ 🚀 ${toTinyCaps('Version')}: ${config.version || '1.0.0'}
 │
 ╰═✪╾┄┄┄┄┄┄┄┄┄┄┄┄╼✪═╯
 `;
@@ -74,7 +74,7 @@ malvin({
             isForwarded: true,
             forwardedNewsletterMessageInfo: {
                 newsletterJid: config.NEWSLETTER_JID || '120363402507750390@newsletter',
-                newsletterName: config.OWNER_NAME || toTinyCaps('Sung Tech'),
+                newsletterName: config.OWNER_NAME || toTinyCaps('Sung tech'),
                 serverMessageId: 143
             }
         };
@@ -104,7 +104,7 @@ malvin({
                         forwardingScore: 999,
                         isForwarded: true,
                         forwardedNewsletterMessageInfo: {
-                            newsletterName: config.OWNER_NAME || toTinyCaps('Sung Tech'),
+                            newsletterName: config.OWNER_NAME || toTinyCaps('Malvin Tech'),
                             serverMessageId: 143
                         }
                     }
