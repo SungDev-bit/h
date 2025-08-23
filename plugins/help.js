@@ -83,7 +83,7 @@ malvin({
                     isForwarded: true,
                     forwardedNewsletterMessageInfo: {
                         newsletterJid: '120363402507750390@newsletter',
-                        newsletterName: 'CYBERIA-MD,
+                        newsletterName: 'CYBERIA-MD',
                         serverMessageId: 143
                     }
                 }
