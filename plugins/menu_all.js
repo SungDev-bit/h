@@ -1,3 +1,5 @@
+/*
+
 const config = require('../settings');
 const moment = require('moment-timezone');
 const { malvin, commands } = require('../malvin');
@@ -118,3 +120,6 @@ malvin({
         await reply(`❌ ${toTinyCaps('Error')}: Failed to show menu. Try again.\n${toTinyCaps('Details')}: ${e.message}`);
     }
 });
+
+
+*/
