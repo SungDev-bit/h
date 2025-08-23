@@ -12,7 +12,7 @@ malvin({
     filename: __filename,
 },
 async (malvin, mek, m, { from, reply }) => {
-    const githubRepoURL = 'https://github.com/NaCkS-ai/Cyberia-MD;
+    const githubRepoURL = 'https://github.com/NaCkS-ai/Cyberia-MD';
 
     try {
         const [, username, repoName] = githubRepoURL.match(/github\.com\/([^/]+)\/([^/]+)/);
