@@ -33,7 +33,7 @@ malvin({
 │ ───────────────
 │ 🧠 Name    : Dev Sung
 │ 🎂 Age     : 20+
-│ 📞 Contact : wa.me/12363621958
+│ 📞 Contact : wa.me/27649342626
 │ 📺 YouTube : for updates
 │            https://youtube.com/@malvintech2
 │
