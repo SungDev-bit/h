@@ -2,7 +2,7 @@ const { malvin } = require("../malvin");
 const moment = require("moment");
 
 let botStartTime = Date.now();
-const ALIVE_IMG = "https://files.catbox.moe/v1rf80.jpg";
+const ALIVE_IMG = "https://files.catbox.moe/lvomei.jpg";
 
 malvin({
     pattern: "help",
