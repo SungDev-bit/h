@@ -31,20 +31,20 @@ malvin({
 
         // Menu header with tiny caps
         let menu = `
-╭═✦〔 🤖 *${toTinyCaps(config.BOT_NAME || 'Cyberia md')}* 〕✦═╮
+╭─❖〔 🤖 ${toTinyCaps(config.BOT_NAME || 'Cyberia Bot')} 〕❖─╮
 │
-│ 👤 ${toTinyCaps('User')}: @${sender.split('@')[0]}
-│ ⏰ ${toTinyCaps('Time')}: ${time}
-│ 📅 ${toTinyCaps('Date')}: ${date}
-│ 🔄 ${toTinyCaps('Runtime')}: ${runtime(process.uptime())}
-│ ⚙️ ${toTinyCaps('Mode')}: ${config.MODE || 'Public'}
-│ 📡 ${toTinyCaps('Platform')}: ${os.platform()}
-│ ⌨️ ${toTinyCaps('Prefix')}: [ ${prefix} ]
-│ 🧩 ${toTinyCaps('Plugins')}: ${commands.length}
-│ 👑 ${toTinyCaps('Dev')}: ${config.OWNER_NAME || toTinyCaps('Dev Sung')}
-│ 🚀 ${toTinyCaps('Version')}: ${config.version || '1.0.0'}
+│ 👤  User      : @${sender.split('@')[0]}
+│ ⏰  Time      : ${time}
+│ 📅  Date      : ${date}
+│ 🔄  Uptime    : ${runtime(process.uptime())}
+│ ⚙️  Mode      : ${config.MODE || 'Public'}
+│ 📡  Platform  : ${os.platform()}
+│ ⌨️  Prefix    : [ ${prefix} ]
+│ 🧩  Plugins   : ${commands.length}
+│ 👑  Developer : ${config.OWNER_NAME || 'Dev-Sung'}
+│ 🚀  Version   : ${config.version || '2.5.0'}
 │
-╰═✪╾┄┄┄┄┄┄┄┄┄┄┄┄╼✪═╯
+╰─❖────────────────────────────❖─╯
 `;
 
         // Group commands by category
@@ -74,7 +74,7 @@ malvin({
             isForwarded: true,
             forwardedNewsletterMessageInfo: {
                 newsletterJid: config.NEWSLETTER_JID || '120363402507750390@newsletter',
-                newsletterName: config.OWNER_NAME || toTinyCaps('Sung tech'),
+                newsletterName: config.OWNER_NAME || toTinyCaps('Sung Tech'),
                 serverMessageId: 143
             }
         };
@@ -104,7 +104,7 @@ malvin({
                         forwardingScore: 999,
                         isForwarded: true,
                         forwardedNewsletterMessageInfo: {
-                            newsletterName: config.OWNER_NAME || toTinyCaps('Malvin Tech'),
+                            newsletterName: config.OWNER_NAME || toTinyCaps('Sung Tech'),
                             serverMessageId: 143
                         }
                     }
