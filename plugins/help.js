@@ -10,7 +10,7 @@ malvin({
     category: "main",
     react: "🧠",
     filename: __filename
-}, async (malvin, mek, m, { reply, from }) => {
+}, async (client, mek, m, { reply, from }) => {   // ✅ use client
     try {
         const pushname = m.pushName || "User";
         const now = moment();
@@ -71,13 +71,12 @@ malvin({
 🌐 *Developer:* Dev Sung
 📡 *Newsletter:* Follow for updates
 ╰═❖────────────────────────❖═╯
-
         `.trim();
 
         const isValidImage = ALIVE_IMG && ALIVE_IMG.startsWith("http");
 
         if (isValidImage) {
-            await malvin.sendMessage(from, {
+            await client.sendMessage(from, {
                 image: { url: ALIVE_IMG },
                 caption,
                 contextInfo: {
@@ -86,7 +85,7 @@ malvin({
                     isForwarded: true,
                     forwardedNewsletterMessageInfo: {
                         newsletterJid: '120363402507750390@newsletter',
-                        newsletterName: 'CYBERIA-MD,
+                        newsletterName: 'CYBERIA-MD',   // ✅ fixed string
                         serverMessageId: 143
                     }
                 }
