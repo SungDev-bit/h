@@ -26,25 +26,23 @@ const toTinyCaps = (str) => {
 
 // Format status info with tiny caps
 const formatStatusInfo = (pushname, harareTime, harareDate, runtimeHours, runtimeMinutes, runtimeSeconds, config) => `
-╭──〔 🔥 ᴀʟɪᴠᴇ sᴛᴀᴛᴜs 🥰 〕──
+╭═❖〔 🔥 CYBERIA-MD ALIVE STATUS 〕❖═╮
 │
-├─ 👋 ʜɪ, ${pushname} 🙃
+│ 👋 Hello, ${pushname}! 🙃
 │
-├─ ⏰ ᴛɪᴍᴇ: ${harareTime}
-├─ 📆 ᴅᴀᴛᴇ: ${harareDate}
-├─ ⏳ ᴜᴘᴛɪᴍᴇ: ${runtimeHours} ʜʀs, ${runtimeMinutes} ᴍɪɴs, ${runtimeSeconds} sᴇᴄs
-├─ 🧩 ʀᴀᴍ ᴜsᴀɢᴇ: ${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}ᴍʙ / ${Math.round(os.totalmem() / 1024 / 1024)}ᴍʙ
+│ ⏰ Time       : ${harareTime}
+│ 📆 Date       : ${harareDate}
+│ ⏳ Uptime     : ${runtimeHours}h ${runtimeMinutes}m ${runtimeSeconds}s
+│ 🧩 RAM Usage  : ${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}MB / ${Math.round(os.totalmem() / 1024 / 1024)}MB
 │
-├─ 📢 ɴᴏᴛɪᴄᴇ:
-│   ɪ ᴀᴍ ɴᴏᴛ ʀᴇsᴘᴏɴsɪʙʟᴇ ғᴏʀ ᴀɴʏ
-│   ᴡʜᴀᴛsᴀᴘᴘ ʙᴀɴs ᴛʜᴀᴛ ᴍᴀʏ ᴏᴄᴄᴜʀ
-│   ᴅᴜᴇ ᴛᴏ ᴛʜᴇ ᴜsᴀɢᴇ ᴏғ ᴛʜɪs ʙᴏᴛ.
-│   ᴜsᴇ ɪᴛ ᴡɪsᴇʟʏ ᴀɴᴅ ᴀᴛ ʏᴏᴜʀ ᴏᴡɴ ʀɪsᴋ ⚠️
+│ 📢 Notice:
+│ I am not responsible for any WhatsApp bans
+│ that may occur due to the usage of this bot.
+│ Please use responsibly and at your own risk ⚠️
 │
-├─ 🔗 ${config.REPO}
+│ 🔗 Repo       : ${config.REPO}
 │
-╰───〔 🥰 〕───
-> ᴘᴏᴡᴇʀᴇᴅ ʙʏ Cyberia-MD
+╰═❖〔 🥰 Powered by Cyberia-MD 〕❖═╯
 `.trim();
 
 malvin({
