@@ -28,31 +28,34 @@ async (malvin, mek, m, {
         const uptimeFormatted = runtime(process.uptime());
 
         const message = `
-╭──❖ *Cyberia-MD ꜱᴜᴘᴘᴏʀᴛ* ❖──╮
+╭─❖ ✨ 「 *Cyberia-MD Support Hub* 」 ✨ ❖─╮
 │
-│ 👨‍💻 *ᴅᴇᴠᴇʟᴏᴘᴇʀ*: dev sung 🇿🇼
-│ ⚙️ *ᴍᴏᴅᴇ*: 𝙼𝙾𝙽𝙾𝚂𝙿𝙰𝙲𝙴 ${config.MODE}
-│ ⏳ *ᴜᴘᴛɪᴍᴇ*: 𝙼𝙾𝙽𝙾𝚂𝙿𝙰𝙲𝙴 ${uptimeFormatted}
-│ 🔑 *ᴘʀᴇꜰɪx*: 𝙼𝙾𝙽𝙾𝚂𝙿𝙰𝙲𝙴 ${config.PREFIX}
-│ 🛠️ *ᴠᴇʀꜱɪᴏɴ*: 𝙼𝙾𝙽𝙾𝚂𝙿𝙰𝙲𝙴 ${config.version}
-│ 🕒 *ᴛɪᴍᴇ*: 𝙼𝙾𝙽𝙾𝚂𝙿𝙰𝙲𝙴 ${currentTime}
+│ 👤 *Hello, ${pushname}!*
 │
-╰────────────────╯
+│ 👨‍💻 *Developer:* Dev Sung 🇿🇼
+│ ⚙️ *Mode:* 𝙼𝙾𝙽𝙾𝚂𝙿𝙰𝙲𝙴 ${config.MODE}
+│ ⏳ *Uptime:* 𝙼𝙾𝙽𝙾𝚂𝙿𝙰𝙲𝙴 ${uptimeFormatted}
+│ 🔑 *Prefix:* 𝙼𝙾𝙽𝙾𝚂𝙿𝙰𝙲𝙴 ${config.PREFIX}
+│ 🛠️ *Version:* 𝙼𝙾𝙽𝙾𝚂𝙿𝙰𝙲𝙴 ${config.version}
+│ 🕒 *Time:* 𝙼𝙾𝙽𝙾𝚂𝙿𝙰𝙲𝙴 ${currentTime}
+│
+╰─❖─────────────────────❖─╯
 
-✨ *ᴄᴏɴɴᴇᴄᴛ ᴡɪᴛʜ Cyberia-MD* ${readMore}
+💫 *Stay connected with Cyberia-MD:* ${readMore}
 
-🔔 *ᴡʜᴀᴛꜱᴀᴘᴘ ᴄʜᴀɴɴᴇʟ*  
-🔗 https://whatsapp.com/channel/0029VbB3YxTDJ6H15SKoBv3S
+🔔 *WhatsApp Channel:*  
+╰─> https://whatsapp.com/channel/0029VbB3YxTDJ6H15SKoBv3S
 
-🎥 *ʏᴏᴜᴛᴜʙᴇ ᴄʜᴀɴɴᴇʟ*  
-🔗 https://youtube.com/@malvintech
+🎥 *YouTube Updates:*  
+╰─> https://youtube.com/@malvintech
 
-📞 *ᴄᴏɴᴛᴀᴄᴛ ᴅᴇᴠᴇʟᴏᴘᴇʀ*  
-🔗 wa.me/12363621958?text=Hi%20dev,%20I%20need%20support!
+📞 *Contact Developer Directly:*  
+╰─> wa.me/12363621958?text=Hi%20dev,%20I%20need%20support!
 
- 💡 *ᴊᴏɪɴ ᴛʜᴇ xᴅ ᴄᴏᴍᴍᴜɴɪᴛʏ!*
- 
-> 🚀 *ᴘᴏᴡᴇʀᴇᴅ ʙʏ dev sung*  
+💡 *Join the XD Community & get the latest tips!*
+
+✨ *Cyberia-MD is fully operational & ready to assist!*  
+🚀 *Powered by Dev Sung*
   
 
         `.trim();
