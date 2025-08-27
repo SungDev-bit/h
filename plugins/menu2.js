@@ -29,22 +29,22 @@ malvin({
         const time = moment().tz(timezone).format('HH:mm:ss');
         const date = moment().tz(timezone).format('dddd, DD MMMM YYYY');
 
-        // Menu header with tiny caps
+        // Menu header
         let menu = `
-╭─❖〔 🤖 ${toTinyCaps(config.BOT_NAME || 'Cyberia Bot')} 〕❖─╮
+╭──❖ 🌸 *${toTinyCaps(config.BOT_NAME || 'Cyberia Bot')}* 🌸 ❖──╮
 │
-│ 👤  User      : @${sender.split('@')[0]}
-│ ⏰  Time      : ${time}
-│ 📅  Date      : ${date}
-│ 🔄  Uptime    : ${runtime(process.uptime())}
-│ ⚙️  Mode      : ${config.MODE || 'Public'}
-│ 📡  Platform  : ${os.platform()}
-│ ⌨️  Prefix    : [ ${prefix} ]
-│ 🧩  Plugins   : ${commands.length}
-│ 👑  Developer : ${config.OWNER_NAME || 'Dev-Sung'}
-│ 🚀  Version   : ${config.version || '2.5.0'}
+│ 👤 User      : @${sender.split('@')[0]}
+│ ⏰ Time      : ${time}
+│ 📅 Date      : ${date}
+│ 🔄 Uptime    : ${runtime(process.uptime())}
+│ ⚙️ Mode      : ${config.MODE || 'Public'}
+│ 📡 Platform  : ${os.platform()}
+│ ⌨️ Prefix    : [ ${prefix} ]
+│ 🧩 Plugins   : ${commands.length}
+│ 👑 Developer : ${config.OWNER_NAME || 'Dev-Sung'}
+│ 🚀 Version   : ${config.version || '2.5.0'}
 │
-╰─❖────────────────────────────❖─╯
+╰──❖─────────────────────────❖──╯
 `;
 
         // Group commands by category
@@ -56,18 +56,18 @@ malvin({
             }
         }
 
-        // Add sorted categories with tiny caps
+        // Add sorted categories
         for (const cat of Object.keys(categories).sort()) {
-            menu += `\n\n╭═✦〔 ${toTinyCaps(cat)} ${toTinyCaps('Menu')} 〕✦═╮\n`;
+            menu += `\n╭─❖ ✦ ${toTinyCaps(cat)} ${toTinyCaps('Menu')} ✦ ❖─╮\n`;
             for (const cmd of categories[cat].sort()) {
-                menu += `│ ➸ ${prefix}${cmd}\n`;
+                menu += `│ ➤ ${prefix}${cmd}\n`;
             }
-            menu += `╰════════════`;
+            menu += `╰──❖────────────────────❖──╯\n`;
         }
 
-        menu += `\n\n> ${config.DESCRIPTION || toTinyCaps('Explore the bot commands!')}`;
+        menu += `\n> ${config.DESCRIPTION || toTinyCaps('Explore the bot commands!')}`;
 
-        // Context info for image message
+        // Context info
         const imageContextInfo = {
             mentionedJid: [sender],
             forwardingScore: 999,
