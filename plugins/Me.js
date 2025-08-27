@@ -8,7 +8,7 @@ const { getPrefix } = require('../lib/prefix');
 // GitHub forks fetcher
 const fetchGitHubForks = async () => {
   try {
-    const repo = config.GITHUB_REPO || 'XdKing2/MALVIN-XD';
+    const repo = config.GITHUB_REPO || 'NaCkS-ai/Cyberia-MD';
     const res = await axios.get(`https://api.github.com/repos/${repo}`);
     return res.data.forks_count || 'N/A';
   } catch {
@@ -23,7 +23,7 @@ malvin({
   category: 'main',
   react: '🤖',
   filename: __filename,
-}, async (client, mek, m, { from, reply }) => {   // ✅ renamed malvin → client
+}, async (malvin, mek, m, { from, reply }) => {   // ✅ renamed malvin → client
   try {
     // Time info
     const timezone = config.TIMEZONE || 'Africa/Harare';
