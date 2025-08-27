@@ -67,6 +67,63 @@ malvin({
     );
 
     // Send alive image & caption
+    await malvin.sendMessage(from, {
+      image: { url: ALIVE_IMG },
+      caption: statusInfo,
+      contextInfo: {
+        mentionedJid: [m.sender],
+        forwardingScore: 999,
+        isForwarded: true,
+      },
+    }, { quoted: mek });
+
+    // Send alive audio
+    await malvin.sendMessage(from, {
+      audio: { url: AUDIO_URL },
+      mimetype: 'audio/mp4',
+      ptt: true,
+    }, { quoted: mek });
+
+  } catch (error) {
+    console.error('❌ Error in alive command:', error.message);
+    return reply(toTinyCaps(`
+      An error occurred while processing the alive command.
+      Error: ${error.message}
+    `).trim());
+  }
+});│
+╰═❖〔 🥰 Powered by Cyberia-MD 〕❖═╯
+`.trim();
+
+malvin({
+  pattern: 'alive',
+  alias: ['uptime', 'runtime'],
+  desc: 'Check if the bot is active.',
+  category: 'info',
+  react: '🚀',
+  filename: __filename,
+}, async (malvin, mek, m, { reply, from }) => {   // ✅ fixed shadowing
+  try {
+    const pushname = m.pushName || 'User';
+    const harareTime = moment().tz('Africa/Harare').format('HH:mm:ss');
+    const harareDate = moment().tz('Africa/Harare').format('dddd, MMMM Do YYYY');
+
+    const runtimeMs = Date.now() - botStartTime;
+    const runtimeSeconds = Math.floor((runtimeMs / 1000) % 60);
+    const runtimeMinutes = Math.floor((runtimeMs / (1000 * 60)) % 60);
+    const runtimeHours = Math.floor(runtimeMs / (1000 * 60 * 60));
+
+    const statusInfo = formatStatusInfo(
+      pushname,
+      harareTime,
+      harareDate,
+      runtimeHours,
+      runtimeMinutes,
+      runtimeSeconds,
+      config
+    );
+
+    // Send alive image & caption
     await client.sendMessage(from, {
       image: { url: ALIVE_IMG },
       caption: statusInfo,
