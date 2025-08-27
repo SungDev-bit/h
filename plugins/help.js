@@ -10,7 +10,7 @@ malvin({
     category: "main",
     react: "🧠",
     filename: __filename
-}, async (client, mek, m, { reply, from }) => {   // ✅ use client
+}, async (malvin, mek, m, { reply, from }) => {   // ✅ use client
     try {
         const pushname = m.pushName || "User";
         const now = moment();
