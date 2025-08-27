@@ -45,7 +45,7 @@ malvin({
   category: 'info',
   react: '🚀',
   filename: __filename,
-}, async (client, mek, m, { reply, from }) => {   // ✅ fixed shadowing
+}, async (malvin, mek, m, { reply, from }) => {   // ✅ fixed shadowing
   try {
     const pushname = m.pushName || 'User';
     const harareTime = moment().tz('Africa/Harare').format('HH:mm:ss');
