@@ -86,28 +86,33 @@ malvin({
 
         // Owner & bot name
         const ownerName = config.OWNER_NAME || 'Dev Sung';
-        const botName = config.BOT_NAME || 'Cyberia-MD';
-        const repoLink = config.REPO || 'https://github.com/NaCkS-ai/Cyberia-MD';
+        const botName = config.BOT_NAME || 'Cyberia-MD;
+        const repoLink = config.REPO || 'https://github.com/NaCkS-ai/Cyberia-MD;
 
         // Final output
         const pingMsg = `
 
-*${statusText}*
+✨🌸 ʀᴇᴀᴅʏ sᴛᴀᴛᴜs! 🌸✨
 
-⚡ \`Response Time:\` ${responseTime.toFixed(2)}s
-⏰ \`Time:\` ${time} (${timezone})
-📅 \`Date:\` ${date}
-⏱️ \`Uptime:\` ${uptime}
-💾 \`Memory Usage:\` ${memoryUsage}
-🖥️ \`Node Version:\` ${nodeVersion}
+💫 *${statusText}* 💫
 
-💻 \`Developer:\` ${ownerName}
-🤖 \`Bot Name:\` ${botName}
+⚡ ᴿᴱˢᴾᴼᴺˢᴱ ᵀᴵᴹᴱ : ${responseTime.toFixed(2)}s
+⏰ ᴛɪᴍᴇ           : ${time} (${timezone})
+📅 ᴅᴀᴛᴇ           : ${date}
+⏱️ ᴜᴘᴛɪᴍᴇ          : ${uptime}
+💾 ᴍᴇᴍᴏʀʏ ᴜsᴀɢᴇ     : ${memoryUsage}
+🖥️ ɴᴏᴅᴇ ᴠᴇʀꜱɪᴏɴ     : ${nodeVersion}
 
-🌟 Don't forget to *star* & *fork* the repo!
-🔗 ${repoLink}
+💻 ᴅᴇᴠᴇʟᴏᴘᴇʀ       : ${ownerName}
+🤖 ʙᴏᴛ ɴᴀᴍᴇ        : ${botName}
 
+🌟 ᴅᴏɴ'ᴛ ꜰᴏʀɢᴇᴛ ᴛᴏ *sᴛᴀʀ* & *ꜰᴏʀᴋ* ᴛʜᴇ ʀᴇᴘᴏ!
+🔗 ʀᴇᴘᴏ ʟɪɴᴋ        : ${repoLink}
+
+💖 Loading Status:  
 ${loadingBar}
+
+🌸 Have a magical day! 🌸
 `.trim();
 
         // Send message with retry
