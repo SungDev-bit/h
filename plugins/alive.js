@@ -12,7 +12,7 @@ malvin({
     category: "main",
     react: "💡",
     filename: __filename
-}, async (malvin, mek, m, { reply, from }) => {
+}, async (client, mek, m, { reply, from }) => {   // ✅ renamed malvin -> client
     try {
         const pushname = m.pushName || "User";
         const now = moment();
@@ -35,6 +35,41 @@ malvin({
         const msg = `
 ╭─❖ 🌟 「 *${toTinyCap("cyberia status")}* 」🌟 ❖─╮
 │
+│ 👋 ʜᴇʏ, *${pushname}*!
+│ ⏰ ᴛɪᴍᴇ       : *${currentTime}*
+│ 📅 ᴅᴀᴛᴇ       : *${currentDate}*
+│ 🧭 ᴜᴘᴛɪᴍᴇ     : *${uptime}*
+│ ⚙️ ᴍᴏᴅᴇ       : *${config.MODE || "default"}*
+│ 🔰 ᴠᴇʀꜱɪᴏɴ     : *${config.version || "1.0.0"}*
+│
+╰─❖ 🌸 ʙᴏᴛ sᴛᴀᴛᴜs 🌸 ❖─╯
+
+✅ ᴄʏʙᴇʀɪᴀ ɪs ᴀʟɪᴠᴇ & ᴏᴘᴇʀᴀᴛɪᴏɴᴀʟ!
+🚀 ꜱʏsᴛᴇᴍ: ᴢᴏᴏᴍɪɴɢ ᴏɴ sᴍᴏᴏᴛʜ ʀᴜɴ!
+✨ ᴛʜᴀɴᴋ ʏᴏᴜ ғᴏʀ ᴄʜᴇᴄᴋɪɴɢ ɪɴ!
+💖 ʜᴀᴠᴇ ᴀ ᴍᴀɢɪᴄᴀʟ ᴅᴀʏ!
+        `.trim();
+
+        await client.sendMessage(from, {
+            image: { url: ALIVE_IMG },
+            caption: msg,
+            contextInfo: {
+                mentionedJid: [m.sender],
+                forwardingScore: 999,
+                isForwarded: true,
+                forwardedNewsletterMessageInfo: {   // ⚠️ may throw on older Baileys
+                    newsletterJid: '120363402507750390@newsletter',
+                    newsletterName: 'cyberia ᴀʟɪᴠᴇ',
+                    serverMessageId: 143
+                }
+            }
+        }, { quoted: mek });
+
+    } catch (err) {
+        console.error("Error in .alive2:", err);
+        return reply(`❌ *Alive Command Error:*\n${err.message}`);
+    }
+});│
 │ 👋 ʜᴇʏ, *${pushname}*!
 │ ⏰ ᴛɪᴍᴇ       : *${currentTime}*
 │ 📅 ᴅᴀᴛᴇ       : *${currentDate}*
