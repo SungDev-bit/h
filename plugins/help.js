@@ -2,7 +2,7 @@ const { malvin } = require("../malvin");
 const moment = require("moment");
 
 let botStartTime = Date.now();
-const ALIVE_IMG = "https://files.catbox.moe/lvomei.jpg";
+const ALIVE_IMG = "https://files.catbox.moe/v1rf80.jpg";
 
 malvin({
     pattern: "help",
@@ -26,48 +26,51 @@ malvin({
         })();
 
         const caption = `
-╭━━━[ 🤖 CYBERIA-MD 𝐁𝐎𝐓 ]━━━╮
-┃ 👤 *User:* ${pushname}
-┃ 📆 *Date:* ${date}
-┃ 🕒 *Time:* ${time}
-┃ ⏳ *Uptime:* ${uptime}
-╰━━━━━━━━━━━━━━━━━━━╯
+╭═❖〔 🤖 CYBERIA-MD BOT HELP 〕❖═╮
+│
+│ 👤 User       : ${pushname}
+│ 📆 Date       : ${date}
+│ 🕒 Time       : ${time}
+│ ⏳ Uptime     : ${uptime}
+│
+╰═❖────────────────────────❖═╯
 
-🔸 *Available Commands Categories:*
+🔹 *Command Categories:*
 
 📌 𝗚𝗲𝗻𝗲𝗿𝗮𝗹
-• say, ping, alive, infoBot, menu
+• say | ping | alive | infoBot | menu
 
-🛠 𝗔𝘂𝗱𝗶𝗼 𝗘𝗳𝗳𝗲𝗰𝘁𝘀
-• bass, blown, deep, fast, nightcore, robot, reverse, slow, earrape
+🎵 𝗔𝘂𝗱𝗶𝗼 𝗘𝗳𝗳𝗲𝗰𝘁𝘀
+• bass | blown | deep | fast | nightcore | robot | reverse | slow | earrape
 
-🎨 𝗔𝗜 / 𝗚𝗘𝗡𝗔𝗜
-• malvin, malvinai, ai, gpt, dalle, bug
+🤖 𝗔𝗜 / 𝗚𝗘𝗡𝗔𝗜
+• malvin | malvinai | ai | gpt | dalle | bug
 
-🧰 𝗧𝗼𝗼𝗹𝘀
-• calculator, tts, tempmail, binary, attr, mp3, emojimix
+🛠 𝗧𝗼𝗼𝗹𝘀
+• calculator | tts | tempmail | binary | attr | mp3 | emojimix
 
 📥 𝗗𝗼𝘄𝗻𝗹𝗼𝗮𝗱𝗲𝗿𝘀
-• youtube, play, ytmp3, ytmp4, instagram, facebook, pinterest, apk
+• youtube | play | ytmp3 | ytmp4 | instagram | facebook | pinterest | apk
 
 👥 𝗚𝗿𝗼𝘂𝗽 𝗠𝗮𝗻𝗮𝗴𝗲𝗺𝗲𝗻𝘁
-• kick, promote, demote, welcome, group, setppgc, setdesc, setname, linkgroup
+• kick | promote | demote | welcome | group | setppgc | setdesc | setname | linkgroup
 
 🔎 𝗦𝗲𝗮𝗿𝗰𝗵
-• google, imdb, pinterest, play, youtube
+• google | imdb | pinterest | play | youtube
 
 👑 𝗢𝘄𝗻𝗲𝗿 𝗢𝗻𝗹𝘆
-• join, leave, block, unblock, setppbot, anticall
+• join | leave | block | unblock | setppbot | anticall
 
 ⭐ 𝗣𝗿𝗲𝗺𝗶𝘂𝗺 / 𝗕𝘂𝗴 𝗧𝗼𝗼𝗹𝘀
-> cooming soon
-• bugmenu, docbug, unlimitedbug
+> Coming Soon
+• bugmenu | docbug | unlimitedbug
 
-🆘 *Use commands with prefix:*.*  or any configured one.
+🆘 *Use commands with prefix:* .*  (or your configured prefix)
 
-🧠 *Bot is fully online and operational!*
-🌐 *Built by:* Dev Sung
-📡 *Follow newsletter for updates!*
+🧠 *Status:* Bot is fully online and operational
+🌐 *Developer:* Dev Sung
+📡 *Newsletter:* Follow for updates
+╰═❖────────────────────────❖═╯
 
         `.trim();
 
@@ -83,7 +86,7 @@ malvin({
                     isForwarded: true,
                     forwardedNewsletterMessageInfo: {
                         newsletterJid: '120363402507750390@newsletter',
-                        newsletterName: 'CYBERIA-MD',
+                        newsletterName: 'CYBERIA-MD,
                         serverMessageId: 143
                     }
                 }
