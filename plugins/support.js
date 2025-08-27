@@ -75,49 +75,4 @@ async (malvin, mek, m, { from, reply, pushname }) => {
         console.error("Support Cmd Error:", e);
         await reply(`⚠️ Error: ${e.message}`);
     }
-});│ ⏳ *Uptime:* 𝙼𝙾𝙽𝙾𝚂𝙿𝙰𝙲𝙴 ${uptimeFormatted}
-│ 🔑 *Prefix:* 𝙼𝙾𝙽𝙾𝚂𝙿𝙰𝙲𝙴 ${config.PREFIX}
-│ 🛠️ *Version:* 𝙼𝙾𝙽𝙾𝚂𝙿𝙰𝙲𝙴 ${config.version}
-│ 🕒 *Time:* 𝙼𝙾𝙽𝙾𝚂𝙿𝙰𝙲𝙴 ${currentTime}
-│
-╰─❖─────────────────────❖─╯
-
-💫 *Stay connected with Cyberia-MD:* ${readMore}
-
-🔔 *WhatsApp Channel:*  
-╰─> https://whatsapp.com/channel/0029VbB3YxTDJ6H15SKoBv3S
-
-🎥 *YouTube Updates:*  
-╰─> https://youtube.com/@malvintech
-
-📞 *Contact Developer Directly:*  
-╰─> wa.me/12363621958?text=Hi%20dev,%20I%20need%20support!
-
-💡 *Join the XD Community & get the latest tips!*
-
-✨ *Cyberia-MD is fully operational & ready to assist!*  
-🚀 *Powered by Dev Sung*
-  
-
-        `.trim();
-
-        await malvin.sendMessage(from, {
-            image: { url: 'https://files.catbox.moe/lvomei.jpg' },
-            caption: message,
-            contextInfo: {
-                mentionedJid: [m.sender],
-                forwardingScore: 999,
-                isForwarded: true,
-                forwardedNewsletterMessageInfo: {
-                    newsletterJid: '120363402507750390@newsletter',
-                    newsletterName: '🪀 sung-xᴅ 🪀',
-                    serverMessageId: 143
-                }
-            }
-        }, { quoted: mek });
-
-    } catch (e) {
-        console.error("Support Cmd Error:", e);
-        reply(`⚠️ Error: ${e.message}`);
-    }
 });
