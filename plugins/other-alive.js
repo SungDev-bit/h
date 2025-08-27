@@ -1,59 +1,44 @@
 const config = require('../settings');
 const axios = require('axios');
-const { malvin, commands } = require('../malvin');
+const { malvin } = require('../malvin');
 
 // ᴜᴛɪʟɪᴛʏ ꜰᴜɴᴄᴛɪᴏɴ ᴛᴏ ɢᴇᴛ ʀᴇꜱᴘᴏɴꜱᴇ ᴛɪᴍᴇ
 const getResponseTime = (startTime) => {
   const diff = process.hrtime(startTime);
-  return (diff[0] * 1000 + diff[1] / 1e6).toFixed(2); // ʀᴇᴛᴜʀɴꜱ ᴛɪᴍᴇ ɪɴ ᴍꜱ
+  return (diff[0] * 1000 + diff[1] / 1e6).toFixed(2); // ᴍꜱ
 };
 
 malvin({
   pattern: "live",
-  desc: "check if the bot is alive and operational",
+  desc: "Check if Cyberia-MD is alive and operational",
   category: "main",
   react: "🟢",
   filename: __filename
-},
-async (malvin, mek, m, { from, sender, pushname, reply }) => {
-  const startTime = process.hrtime(); // ꜱᴛᴀʀᴛ ᴛʀᴀᴄᴋɪɴɢ ʀᴇꜱᴘᴏɴꜱᴇ ᴛɪᴍᴇ
+}, async (malvin, mek, m, { from, sender, pushname, reply }) => {
+  const startTime = process.hrtime();
   try {
-    // ᴅʏɴᴀᴍɪᴄ ᴄᴀᴘᴛɪᴏɴ ᴡɪᴛʜ ᴠᴇʀꜱɪᴏɴ ᴀɴᴅ ʀᴇꜱᴘᴏɴꜱᴇ ᴛɪᴍᴇ
     const caption = `
-✨🌸 ʜᴇʟʟᴏ ${pushname}! ɪ'ᴍ ᴀʟɪᴠᴇ ᴀɴᴅ ʀᴇᴀᴅʏ ᴛᴏ ʀᴏᴄᴋ! 🌸✨
+🌸✨ *Cyberia-MD is Alive!* ✨🌸
 
-╭━━━❖ 〘 𝓒𝔂𝔟𝔢𝔯𝔦𝔞-𝕄𝔻 〙 ❖━━━╮
-│ 🌟 ɴᴀᴍᴇ         : Cyberia-MD
-│ 👑 ᴄʀᴇᴀᴛᴏʀ     : Dev Sung
-│ ⚙️ ᴠᴇʀꜱɪᴏɴ      : ${config.version || '2.5.0'}
-│ 📂 ꜱᴄʀɪᴘᴛ ᴛʏᴘᴇ : ᴘʟᴜɢɪɴꜱ
-│ ⏱️ ʀᴇꜱᴘᴏɴꜱᴇ ᴛɪᴍᴇ: ${getResponseTime(startTime)} ᴍꜱ
-╰━━━━━━━━━━━━━━━━╯
+👋 Hello @${pushname}
+🕒 Time : ${new Date().toLocaleTimeString('en-ZA', { timeZone: config.TIMEZONE || 'Africa/Harare' })}
+📅 Date : ${new Date().toLocaleDateString('en-ZA', { timeZone: config.TIMEZONE || 'Africa/Harare', weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })}
+⏱️ Response Time: ${getResponseTime(startTime)} ms
+⚙️ Version: ${config.version || '2.5.0'}
+🧠 Bot Type: WhatsApp Assistant
 
-🌸 ɪ'ᴍ ʏᴏᴜʀ ᴀɴɪᴍᴇ-ᴛʜᴇᴍᴇᴅ ᴡʜᴀᴛꜱᴀᴘᴘ ᴀꜱꜱɪꜱᴛᴀɴᴛ 💖
-🧠 ғᴏʀ ᴅᴀᴛᴀ ʀᴇᴛʀɪᴇᴠᴀʟ, ꜱᴇᴀʀᴄʜᴇꜱ, ᴀɴᴅ ᴍᴏʀᴇ! 🎀
+🔖 Type *.allmenu* to explore all commands.
 
-📜 ʀᴜʟᴇꜱ ᴛᴏ ꜱᴛᴀʏ ʜᴀᴘᴘʏ:
-1. 🚫 ɴᴏ ꜱᴘᴀᴍᴍɪɴɢ
-2. 🚫 ɴᴏ ᴅɪʀᴇᴄᴛ ᴄᴀʟʟꜱ ᴛᴏ ᴛʜᴇ ʙᴏᴛ
-3. 🚫 ɴᴏ ᴄᴏɴᴛᴀᴄᴛɪɴɢ ᴛʜᴇ ᴏᴡɴᴇʀ
-4. 🚫 ᴅᴏɴ'ᴛ ʙᴏᴛʜᴇʀ ᴏᴡɴᴇʀ ᴡɪᴛʜ ꜱᴘᴀᴍ
+© ${new Date().getFullYear()} Dev Sung
+`.trim();
 
-💫 ᴛʏᴘᴇ *.ᴀʟʟᴍᴇɴᴜ* ᴛᴏ ᴇxᴘʟᴏʀᴇ ᴀʟʟ ᴄᴏᴍᴍᴀɴᴅꜱ!  
+    const imageUrl = config.ALIVE_IMAGE_URL || 'https://files.catbox.moe/v2f5bk.jpg';
 
-🎀 © ${new Date().getFullYear()} Dev Sung
-    `.trim();
+    // Check if image is accessible
+    await axios.head(imageUrl).catch(() => {
+      return reply('⚠️ Unable to load bot image, but Cyberia-MD is alive!');
+    });
 
-    // ᴠᴀʟɪᴅᴀᴛᴇ ɪᴍᴀɢᴇ ᴜʀʟ ʙᴇꜰᴏʀᴇ ꜱᴇɴᴅɪɴɢ
-    const imageUrl = 'https://files.catbox.moe/v2f5bk.jpg';
-    try {
-      await axios.head(imageUrl); // ᴄʜᴇᴄᴋ ɪꜰ ɪᴍᴀɢᴇ ᴜʀʟ ɪꜱ ᴀᴄᴄᴇꜱꜱɪʙʟᴇ
-    } catch (imgErr) {
-      console.warn('ɪᴍᴀɢᴇ ᴜʀʟ ɪɴᴀᴄᴄᴇꜱꜱɪʙʟᴇ:', imgErr.message);
-      return reply('⚠️ ᴜɴᴀʙʟᴇ ᴛᴏ ʟᴏᴀᴅ ʙᴏᴛ ɪᴍᴀɢᴇ. ʙᴏᴛ ɪꜱ ᴀʟɪᴠᴇ, ʙᴜᴛ ɪᴍᴀɢᴇ ᴅɪꜱᴘʟᴀʏ ꜰᴀɪʟᴇᴅ.');
-    }
-
-    // ꜱᴇɴᴅ ᴍᴇꜱꜱᴀɢᴇ ᴡɪᴛʜ ɪᴍᴀɢᴇ ᴀɴᴅ ᴄᴀᴘᴛɪᴏɴ
     await malvin.sendMessage(from, {
       image: { url: imageUrl },
       caption,
@@ -63,18 +48,17 @@ async (malvin, mek, m, { from, sender, pushname, reply }) => {
         isForwarded: true,
         forwardedNewsletterMessageInfo: {
           newsletterJid: '120363402507750390@newsletter',
-          newsletterName: 'sung ᴛᴇᴄʜ',
+          newsletterName: 'Dev Sung',
           serverMessageId: 143
         }
       }
     }, { quoted: mek });
 
   } catch (err) {
-    // ɪᴍᴘʀᴏᴠᴇᴅ ᴇʀʀᴏʀ ʜᴀɴᴅʟɪɴɢ ᴡɪᴛʜ ꜱᴘᴇᴄɪꜰɪᴄ ᴍᴇꜱꜱᴀɢᴇꜱ
-    console.error('ᴇʀʀᴏʀ ɪɴ ʟɪᴠᴇ ᴄᴏᴍᴍᴀɴᴅ:', err);
+    console.error('Error in live command:', err);
     const errorMessage = err.message.includes('network')
-      ? '⚠️ ɴᴇᴛᴡᴏʀᴋ ɪꜱꜱᴜᴇ ᴅᴇᴛᴇᴄᴛᴇᴅ. ᴘʟᴇᴀꜱᴇ ᴛʀʏ ᴀɢᴀɪɴ ʟᴀᴛᴇʀ.'
-      : `❌ ᴇʀʀᴏʀ: ${err.message}`;
+      ? '⚠️ Network issue detected. Please try again later.'
+      : `❌ Error: ${err.message}`;
     await reply(errorMessage);
   }
 });
