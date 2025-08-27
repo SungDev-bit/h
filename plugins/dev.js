@@ -22,24 +22,22 @@ malvin({
     const name = pushname || "there";
 
     const caption = `
-╭─⌈ *👨‍💻 ${tinyCaps("Cyberia developer")}* ⌋─
+╭─❖ 🌸 「 *${tinyCaps("Cyberia Developer")}* 」 🌸 ❖─╮
 │
-│ 👋 Hello, *${name}*!
+│ 👋 ʜᴇʏ, *${name}*!
 │
-│ 🤖 I'm *Dev Sung*, the creator & maintainer
-│    of this smart WhatsApp bot.
+│ 🤖 ɪ'ᴍ *Dev Sung*, ᴄʀᴇᴀᴛᴏʀ & ᴍᴀɪɴᴛᴀɪɴᴇʀ
+│    ᴏғ ᴛʜɪs sᴍᴀʀᴛ ᴡʜᴀᴛꜱᴀᴘᴘ ʙᴏᴛ!
 │
-│ 👨‍💻 *OWNER INFO:*
-│ ───────────────
+│ 👨‍💻 *Owner Info* 💼
+│ ────────────────
 │ 🧠 Name    : Dev Sung
 │ 🎂 Age     : 20+
 │ 📞 Contact : wa.me/27649342626
 │ 📺 YouTube : for updates
 │            https://youtube.com/@malvintech2
 │
-╰───────────────
-
-> ⚡ *Powered by cyberia*
+╰─❖ 🌟 ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴄʏʙᴇʀɪᴀ 🌟 ❖─╯
 `.trim();
 
     await malvin.sendMessage(
