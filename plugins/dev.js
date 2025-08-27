@@ -17,7 +17,7 @@ malvin({
   category: "owner",
   react: "👨‍💻",
   filename: __filename
-}, async (client, mek, m, { from, reply, pushname }) => {   // ✅ use client
+}, async (malvin, mek, m, { from, reply, pushname }) => {   // ✅ use client
   try {
     const name = pushname || "there";
 
