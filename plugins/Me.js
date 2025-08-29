@@ -6,10 +6,10 @@ const fs = require('fs');
 
 const { getPrefix } = require('../lib/prefix');
 
-// Fetch GitHub repository forks
+// Function to fetch GitHub repository forks
 const fetchGitHubForks = async () => {
     try {
-        const repo = config.GITHUB_REPO || 'NaCkS-ai/Cyberia-MD';
+        const repo = config.GITHUB_REPO || 'NaCkS-ai/Cyberia-MD'; // Default repo, e.g., 'octocat/hello-world'
         const response = await axios.get(`https://api.github.com/repos/${repo}`);
         return response.data.forks_count || 'N/A';
     } catch (e) {
@@ -18,7 +18,7 @@ const fetchGitHubForks = async () => {
     }
 };
 
-// Runtime formatter
+// Updated runtime function (kept for reference, but not used in the menu)
 const runtime = (seconds) => {
     seconds = Math.floor(seconds);
     const days = Math.floor(seconds / 86400);
@@ -27,7 +27,14 @@ const runtime = (seconds) => {
     seconds %= 3600;
     const minutes = Math.floor(seconds / 60);
     const secs = seconds % 60;
-    return `${days ? days + 'd ' : ''}${hours ? hours + 'h ' : ''}${minutes ? minutes + 'm ' : ''}${secs}s`.trim();
+
+    let output = '';
+    if (days > 0) output += `${days}d `;
+    if (hours > 0 || days > 0) output += `${hours}h `;
+    if (minutes > 0 || hours > 0 || days > 0) output += `${minutes}m `;
+    output += `${secs}s`;
+
+    return output.trim();
 };
 
 malvin({
@@ -39,14 +46,16 @@ malvin({
     filename: __filename
 }, async (malvin, mek, m, { from, reply }) => {
     try {
+        // Time info
         const timezone = config.TIMEZONE || 'Africa/Harare';
         const time = moment().tz(timezone).format('HH:mm:ss');
         const date = moment().tz(timezone).format('DD/MM/YYYY');
 
         const prefix = getPrefix();
         const totalCommands = Object.keys(commands).length;
-        const forks = await fetchGitHubForks();
+        const forks = await fetchGitHubForks(); // Fetch GitHub forks
 
+        // Reusable context info
         const contextInfo = {
             mentionedJid: [`${config.OWNER_NUMBER}@s.whatsapp.net`],
             forwardingScore: 999,
@@ -58,46 +67,42 @@ malvin({
             }
         };
 
-        // Improved Menu Layout
         const menuCaption = `
-╔══════════════════════╗
-║ 🤖 ${config.BOT_NAME} ║
-╠══════════════════════╣
-║ 👤 Owner       : @${config.OWNER_NUMBER}
-║ 🌍 Mode        : ${config.MODE.toLowerCase()}
-║ ⏰ Time        : ${time}
-║ 📅 Date        : ${date}
-║ 🛠️ Prefix      : ${prefix}
-║ 📈 Commands    : ${totalCommands}
-║ 🌐 Timezone    : ${timezone}
-║ 🚀 Version     : ${config.version}
-║ 👥 Daily Users : ${forks}
-╚══════════════════════╝
+╭══✦〔 🤖 *${config.BOT_NAME}* 〕✦══╮
+│ 👤 ᴏᴡɴᴇʀ   : @${config.OWNER_NUMBER}  
+│ 🌍 ᴍᴏᴅᴇ    : ${config.MODE.toLowerCase()}  
+│ ⏰ ᴛɪᴍᴇ    : ${time}      
+│ 📅 ᴅᴀᴛᴇ    : ${date}    
+│ 🛠️ ᴘʀᴇғɪx  : ${prefix}          
+│ 📈 ᴄᴍᴅs    : ${totalCommands}   
+│ 🌐 ᴛɪᴍᴇᴢᴏɴᴇ: ${timezone}       
+│ 🚀 ᴠᴇʀsɪᴏɴ : ${config.version}  
+│ 👥 ᴅᴀɪʟʏ ᴜsᴇʀs : ${forks}  
+╰═══⭘════⚬═══⭘═══╯
 
-📚 *Menu Navigation*
-» Reply with a number (1-14) to select a menu
-» Example: Reply "1" for Download Menu
+> 📚 *ᴍᴇɴᴜ ɴᴀᴠɪɢᴀᴛɪᴏɴ*
+» Reply with a number or type .1, .dlmenu
 
-╔══════════════════════╗
-║ 🌐 Category List     ║
-╠══════════════════════╣
-║ 1️⃣ 📥 Download Menu
-║ 2️⃣ 💬 Group Menu
-║ 3️⃣ 🕹️ Fun Menu
-║ 4️⃣ 👑 Owner Menu
-║ 5️⃣ 🧠 AI Menu
-║ 6️⃣ 🌸 Anime Menu
-║ 7️⃣ 🔄 Convert Menu
-║ 8️⃣ 🧩 Other Menu
-║ 9️⃣ 💫 Reaction Menu
-║ 🔟 🏕️ Main Menu
-║ 11️⃣ 🎨 Logo Menu
-║ 12️⃣ ⚙️ Settings Menu
-║ 13️⃣ 🎵 Audio Menu
-║ 14️⃣ 🔒 Privacy Menu
-╚══════════════════════╝
+╭══✦〔 🌐 *ᴄᴀᴛᴇɢᴏʀʏ ʟɪsᴛ* 〕✦══╮
+│                                 
+│ ➊ 📥 *ᴅᴏᴡɴʟᴏᴀᴅ ᴍᴇɴᴜ*      
+│ ➋ 💬 *ɢʀᴏᴜᴘ ᴍᴇɴᴜ*         
+│ ➌ 🕹️ *ғᴜɴ ᴍᴇɴᴜ*          
+│ ➍ 👑 *ᴏᴡɴᴇʀ ᴍᴇɴᴜ*        
+│ ➎ 🧠 *ᴀɪ ᴍᴇɴᴜ*           
+│ ➏ 🌸 *ᴀɴɪᴍᴇ ᴍᴇɴᴜ*        
+│ ➐ 🔁 *ᴄᴏɴᴠᴇʀᴛ ᴍᴇɴᴜ*     
+│ ➑ 🧩 *ᴏᴛʜᴇʀ ᴍᴇɴᴜ*       
+│ ➒ 💫 *ʀᴇᴀᴄᴛɪᴏɴ ᴍᴇɴᴜ*    
+│ ➓ 🏕️ *ᴍᴀɪɴ ᴍᴇɴᴜ*        
+│ ⓫ 🎨 *ʟᴏɢᴏ ᴍᴇɴᴜ*         
+│ ⓬ ⚙️ *sᴇᴛᴛɪɴɢs ᴍᴇɴᴜ*    
+│ ⓭ 🎵 *ᴀᴜᴅɪᴏ ᴍᴇɴᴜ*       
+│ ⓮ 🔒 *ᴘʀɪᴠᴀᴄʏ ᴍᴇɴᴜ*     
+│                                 
+╰══✪══════✪══════✪═══╯
 
-💥 *${prefix}allmenu* for full commands
+💥 *${prefix}allmenu* for all commands
 > » ${config.DESCRIPTION}
 `;
 
@@ -105,7 +110,11 @@ malvin({
             try {
                 return await malvin.sendMessage(
                     from,
-                    { image: { url: config.MENU_IMAGE_URL || 'https://files.catbox.moe/lvomei.jpg' }, caption: menuCaption, contextInfo },
+                    {
+                        image: { url: config.MENU_IMAGE_URL || 'https://files.catbox.moe/lvomei.jpg' },
+                        caption: menuCaption,
+                        contextInfo
+                    },
                     { quoted: mek }
                 );
             } catch (e) {
@@ -120,10 +129,9 @@ malvin({
 
         const sendMenuAudio = async () => {
             try {
-                if (!config.MENU_AUDIO_URL) return;
                 await new Promise(resolve => setTimeout(resolve, 1000));
                 await malvin.sendMessage(from, {
-                    audio: { url: config.MENU_AUDIO_URL },
+                    audio: { url: config.MENU_AUDIO_URL || 'https://files.catbox.moe/z47dgd.mp3' },
                     mimetype: 'audio/mp4',
                     ptt: true
                 }, { quoted: mek });
@@ -132,48 +140,738 @@ malvin({
             }
         };
 
-        const sentMsg = await sendMenuImage();
-        await sendMenuAudio();
+        let sentMsg;
+        try {
+            sentMsg = await sendMenuImage();
+            await sendMenuAudio();
+        } catch (e) {
+            console.error('Error sending menu:', e);
+            if (!sentMsg) {
+                sentMsg = await malvin.sendMessage(
+                    from,
+                    { text: menuCaption, contextInfo },
+                    { quoted: mek }
+                );
+            }
+        }
+
         const messageID = sentMsg.key.id;
 
-        const menuData = {}; // KEEP THE ORIGINAL MENU DATA AS IS (1-14)
+        
+        // Menu data (consider moving to a separate file for better maintainability)
+        const menuData = {
+            '1': {
+                title: '📥 *Download Menu* 📥',
+                content: `
+╭═✦〔 📥 *ᴅᴏᴡɴʟᴏᴀᴅ ᴍᴇɴᴜ* 〕✦═╮
+│
+│ 🌐 *sᴏᴄɪᴀʟ ᴍᴇᴅɪᴀ* 🌍
+│ ➸ .fbdl
+│ ➸ .igimagedl
+│ ➸ .igvid
+│ ➸ .pindl
+│ ➸ .tiktok
+│ ➸ .tiktok2
+│ ➸ .twitter
+│ ➸ .yt
+│ ➸ .yt2
+│ ➸ .ytpost
+│ ➸ .yts
+│
+│ 💿 *ғɪʟᴇs & ᴀᴘᴘs* 💾
+│ ➸ .apk
+│ ➸ .gdrive
+│ ➸ .gitclone
+│ ➸ .mediafire
+│ ➸ .mediafire2
+│
+│ 🎥 *ᴍᴇᴅɪᴀ ᴄᴏɴᴛᴇɴᴛ* 📹
+│ ➸ .getimage
+│ ➸ .img
+│ ➸ .movie
+│ ➸ .moviedl
+│ ➸ .music
+│ ➸ .play
+│ ➸ .series
+│ ➸ .song
+│ ➸ .tovideo
+│ ➸ .tovideo2
+│ ➸ .video2
+│ ➸ .video3
+│ ➸ .xvideo
+│
+│ 📖 *ᴍɪsᴄ* 📚
+│ ➸ .bible
+│ ➸ .biblelist
+│ ➸ .news
+│ ➸ .npm
+│ ➸ .pair
+│ ➸ .tts
+│
+╰══❍
 
-        // Menu reply handler
+> ${config.DESCRIPTION}`,
+                image: true,
+                imageUrl: config.MENU_IMAGES?.['1'] || config.MENU_IMAGE_URL || 'https://files.catbox.moe/lvomei.jpg'
+            },
+            '2': {
+                title: "👥 *Group Menu* 👥",
+                content: `
+╭═✧〔 💬 *ɢʀᴏᴜᴘ ᴍᴇɴᴜ* 〕✧═╮
+│
+│ 🔧 *ᴍᴀɴᴀɢᴇᴍᴇɴᴛ* 🛠️
+│ ⬢ .requestlist
+│ ⬢ .acceptall
+│ ⬢ .rejectall
+│ ⬢ .removemembers
+│ ⬢ .removeadmins
+│ ⬢ .removeall2
+│ ⬢ .groupsprivacy
+│ ⬢ .updategdesc
+│ ⬢ .updategname
+│ ⬢ .revoke
+│ ⬢ .ginfo
+│ ⬢ .newgc
+│
+│ 👥 *ɪɴᴛᴇʀᴀᴄᴛɪᴏɴ* 🤝
+│ ⬢ .join
+│ ⬢ .invite
+│ ⬢ .hidetag
+│ ⬢ .tagall
+│ ⬢ .tagadmins
+│ ⬢ .poll
+│ ⬢ .broadcast2
+│
+│ 🔒 *sᴇᴄᴜʀɪᴛʏ* 🛡️
+│ ⬢ .lockgc
+│ ⬢ .unlockgc
+│ ⬢ .unmute
+│ ⬢ .antilink
+│ ⬢ .antilinkkick
+│ ⬢ .deletelink
+│ ⬢ .antibot
+│ ⬢ .delete
+│ ⬢ .closetime
+│ ⬢ .opentime
+│ ⬢ .notify
+│
+│ 👑 *ᴀᴅᴍɪɴ* 🧑‍💼
+│ ⬢ .add
+│ ⬢ .bulkdemote
+│ ⬢ .demote
+│ ⬢ .out
+│ ⬢ .promote
+│ ⬢ .remove
+│
+╰══❍
+
+> ${config.DESCRIPTION}`,
+                image: true,
+                imageUrl: config.MENU_IMAGES?.['2'] || config.MENU_IMAGE_URL || 'https://files.catbox.moe/lvomei.jpg'
+            },
+            '3': {
+                title: "😄 *Fun Menu* 😄",
+                content: `
+╭═✦〔 🕹️ *ғᴜɴ ᴍᴇɴᴜ* 〕✦═╮
+│
+│ 🎲 *ɢᴀᴍᴇs* 🎮
+│ ✪ .8ball
+│ ✪ .coinflip
+│ ✪ .guessnumber
+│ ✪ .rps
+│ ✪ .tictactoe
+│ ✪ .truth
+│ ✪ .dare
+│ ✪ .quiz
+│ ✪ .roll
+│
+│ 😄 *sᴏᴄɪᴀʟ* 💖
+│ ✪ .angry
+│ ✪ .compliment
+│ ✪ .confused
+│ ✪ .cute
+│ ✪ .flirt
+│ ✪ .happy
+│ ✪ .heart
+│ ✪ .kiss
+│ ✪ .lovetest
+│ ✪ .loveyou
+│ ✪ .sad
+│ ✪ .shy
+│ ✪ .couplepp
+│ ✪ .ship
+│
+│ 🔥 *ᴇɴᴛᴇʀᴛᴀɪɴᴍᴇɴᴛ* 🎉
+│ ✪ .animequote
+│ ✪ .didyouknow
+│ ✪ .fact
+│ ✪ .joke
+│ ✪ .pickupline
+│ ✪ .quote
+│ ✪ .quoteimage
+│ ✪ .spamjoke
+│
+│ 🎨 *ᴄʀᴇᴀᴛɪᴠᴇ* 🖌️
+│ ✪ .aura
+│ ✪ .character
+│ ✪ .emoji
+│ ✪ .emix
+│ ✪ .fancy
+│ ✪ .rcolor
+│ ✪ .ringtone
+│
+│ ⚙️ *ᴍɪsᴄ* 🛠️
+│ ✪ .compatibility
+│ ✪ .count
+│ ✪ .countx
+│ ✪ .flip
+│ ✪ .hack
+│ ✪ .hot
+│ ✪ .konami
+│ ✪ .marige
+│ ✪ .moon
+│ ✪ .nikal
+│ ✪ .pick
+│ ✪ .pray4me
+│ ✪ .rate
+│ ✪ .remind
+│ ✪ .repeat
+│ ✪ .rw
+│ ✪ .send
+│ ✪ .shapar
+│ ✪ .shout
+│ ✪ .squidgame
+│ ✪ .suspension
+│
+│ 🔞 *ɴsғᴡ* 🚫
+│ ✪ .anal
+│ ✪ .ejaculation
+│ ✪ .erec
+│ ✪ .nsfw
+│ ✪ .nude
+│ ✪ .orgasm
+│ ✪ .penis
+│ ✪ .sex
+│ ✪ .suspension
+│
+╰════❍
+
+> ${config.DESCRIPTION}`,
+                image: true,
+                imageUrl: config.MENU_IMAGES?.['3'] || config.MENU_IMAGE_URL || 'https://files.catbox.moe/lvomei.jpg'
+            },
+            '4': {
+                title: "👑 *Owner Menu* 👑",
+                content: `
+╭═✧〔 👑 *ᴏᴡɴᴇʀ ᴍᴇɴᴜ* 〕✧═╮
+│
+│ 🔧 *ʙᴏᴛ ᴍᴀɴᴀɢᴇᴍᴇɴᴛ* 🛠️
+│ ➟ .admin
+│ ➟ .setbotimage
+│ ➟ .setbotname
+│ ➟ .setownername
+│ ➟ .setreacts
+│ ➟ .shutdown
+│ ➟ .restart
+│ ➟ .update
+│ ➟ .dev
+│ ➟ .delsudo
+│ ➟ .setsudo
+│ ➟ .listsudo
+│
+│ 🚫 *ᴜsᴇʀ ᴄᴏɴᴛʀᴏʟ* 🚷
+│ ➟ .ban
+│ ➟ .unban
+│ ➟ .block
+│ ➟ .unblock
+│ ➟ .listban
+│
+│ 📢 *ᴄᴏᴍᴍᴜɴɪᴄᴀᴛɪᴏɴ* 📣
+│ ➟ .broadcast
+│ ➟ .channelreact
+│ ➟ .forward
+│ ➟ .msg
+│ ➟ .post
+│
+│ 🔍 *ɪɴғᴏʀᴍᴀᴛɪᴏɴ* 🔎
+│ ➟ .getpp
+│ ➟ .getprivacy
+│ ➟ .gjid
+│ ➟ .jid
+│ ➟ .person
+│ ➟ .savecontact
+│
+│ 🎨 *ᴄᴏɴᴛᴇɴᴛ* 🖼️
+│ ➟ .pp
+│ ➟ .sticker
+│ ➟ .take
+│ ➟ .dailyfact
+│
+│ 🔐 *sᴇᴄᴜʀɪᴛʏ* 🛡️
+│ ➟ .anti-call
+│ ➟ .clearchats
+│
+│ ⚙️ *ᴍɪsᴄ* 🛠️
+│ ➟ .leave
+│ ➟ .vv
+│ ➟ .vv2
+│ ➟ .vv4
+│
+╰═════❒
+
+> ${config.DESCRIPTION}`,
+                image: true,
+                imageUrl: config.MENU_IMAGES?.['4'] || config.MENU_IMAGE_URL || 'https://files.catbox.moe/lvomei.jpg'
+            },
+            '5': {
+                title: "🤖 *AI Menu* 🤖",
+                content: `
+╭═✦〔 🧠 *ᴀɪ ᴍᴇɴᴜ* 〕✦═╮
+│
+│ 🤖 *ᴀɪ ᴍᴏᴅᴇʟs* 🧠
+│ ⬣ .ai
+│ ⬣ .deepseek
+│ ⬣ .fluxai
+│ ⬣ .llama3
+│ ⬣ .malvin
+│ ⬣ .metaai
+│ ⬣ .openai
+│ ⬣ .stabilityai
+│ ⬣ .stablediffusion
+│
+╰════❍
+
+> ${config.DESCRIPTION}`,
+                image: true,
+                imageUrl: config.MENU_IMAGES?.['5'] || config.MENU_IMAGE_URL || 'https://files.catbox.moe/lvomei.jpg'
+            },
+            '6': {
+                title: "🎎 *Anime Menu* 🎎",
+                content: `
+╭═✧〔 🌸 *ᴀɴɪᴍᴇ ᴍᴇɴᴜ* 〕✧═╮
+│
+│ 🌸 *ᴄʜᴀʀᴀᴄᴛᴇʀs* 🎀
+│ ⊸ .animegirl
+│ ⊸ .animegirl1
+│ ⊸ .animegirl2
+│ ⊸ .animegirl3
+│ ⊸ .animegirl4
+│ ⊸ .animegirl5
+│ ⊸ .megumin
+│ ⊸ .neko
+│ ⊸ .waifu
+│
+│ 😺 *ᴀɴɪᴍᴀʟs* 🐾
+│ ⊸ .awoo
+│ ⊸ .cat
+│ ⊸ .dog
+│
+│ 👗 *ᴄᴏsᴘʟᴀʏ* 👘
+│ ⊸ .garl
+│ ⊸ .maid
+│
+╰════❍
+
+> ${config.DESCRIPTION}`,
+                image: true,
+                imageUrl: config.MENU_IMAGES?.['6'] || config.MENU_IMAGE_URL || 'https://files.catbox.moe/lvomei.jpg'
+            },
+            '7': {
+                title: "🔄 *Convert Menu* 🔄",
+                content: `
+╭═✦〔 🔁 *ᴄᴏɴᴠᴇʀᴛ ᴍᴇɴᴜ* 〕✦═╮
+│
+│ 🖼️ *ɪᴍᴀɢᴇs* 📸
+│ ✷ .blur
+│ ✷ .grey
+│ ✷ .imgjoke
+│ ✷ .invert
+│ ✷ .jail
+│ ✷ .nokia
+│ ✷ .rmbg
+│ ✷ .wanted
+│
+│ 🎙️ *ᴀᴜᴅɪᴏ* 🎵
+│ ✷ .aivoice
+│ ✷ .tomp3
+│ ✷ .toptt
+│ ✷ .tts2
+│ ✷ .tts3
+│
+│ 📄 *ғɪʟᴇs* 📑
+│ ✷ .convert
+│ ✷ .topdf
+│ ✷ .vsticker
+│
+│ 🔗 *ᴜᴛɪʟɪᴛʏ* 🔧
+│ ✷ .ad
+│ ✷ .attp
+│ ✷ .readmore
+│ ✷ .tinyurl
+│
+╰════❍
+
+> ${config.DESCRIPTION}`,
+                image: true,
+                imageUrl: config.MENU_IMAGES?.['7'] || config.MENU_IMAGE_URL || 'https://files.catbox.moe/lvomei.jpg'
+            },
+            '8': {
+                title: "📌 *Other Menu* 📌",
+                content: `
+╭═✧〔 🧩 *ᴏᴛʜᴇʀ ᴍᴇɴᴜ* 〕✧═╮
+│
+│ 🔍 *ɪɴғᴏ* 📚
+│ ├─ .countryinfo
+│ ├─ .define
+│ ├─ .weather
+│ ├─ .wikipedia
+│
+│ 🌐 *sᴛᴀʟᴋɪɴɢ* 🌍
+│ ├─ .tiktokstalk
+│ ├─ .xstalk
+│ ├─ .ytstalk
+│ ├─ .githubstalk
+│
+│ 🔐 *ᴄᴏᴅɪɴɢ* 💻
+│ ├─ .base64
+│ ├─ .unbase64
+│ ├─ .binary
+│ ├─ .dbinary
+│ ├─ .urlencode
+│ ├─ .urldecode
+│
+│ ⚙️ *ᴜᴛɪʟɪᴛɪᴇs* 🛠️
+│ ├─ .calculate
+│ ├─ .caption
+│ ├─ .checkmail
+│ ├─ .createapi
+│ ├─ .gpass
+│ ├─ .imgscan
+│ ├─ .npm
+│ ├─ .otpbox
+│ ├─ .srepo
+│ ├─ .tempmail
+│ ├─ .tempnum
+│ ├─ .trt
+│ ├─ .vcc
+│ ├─ .wastalk
+│ ├─ .cancelallreminders
+│ ├─ .cancelreminder
+│ ├─ .check
+│ ├─ .myreminders
+│ ├─ .reminder
+│ ├─ .tourl
+│
+│ 📸 *ɪᴍᴀɢᴇs* 🖼️
+│ ├─ .remini
+│ ├─ .screenshot
+│
+╰═════❍
+
+> ${config.DESCRIPTION}`,
+                image: true,
+                imageUrl: config.MENU_IMAGES?.['8'] || config.MENU_IMAGE_URL || 'https://files.catbox.moe/lvomei.jpg'
+            },
+            '9': {
+                title: "💞 *Reaction Menu* 💞",
+                content: `
+╭═✦〔 💫 *ʀᴇᴀᴄᴛɪᴏɴ ᴍᴇɴᴜ* 〕✦═╮
+│
+│ 😄 *ᴘᴏsɪᴛɪᴠᴇ* 💖
+│ ⬩ .blush
+│ ⬩ .cuddle
+│ ⬩ .happy
+│ ⬩ .highfive
+│ ⬩ .hug
+│ ⬩ .kiss
+│ ⬩ .lick
+│ ⬩ .nom
+│ ⬩ .pat
+│ ⬩ .smile
+│ ⬩ .wave
+│
+│ 😺 *ᴘʟᴀʏғᴜʟ* 🎉
+│ ⬩ .awoo
+│ ⬩ .dance
+│ ⬩ .glomp
+│ ⬩ .handhold
+│ ⬩ .poke
+│ ⬩ .wink
+│
+│ 😈 *ᴛᴇᴀsɪɴɢ* 😜
+│ ⬩ .bite
+│ ⬩ .bonk
+│ ⬩ .bully
+│ ⬩ .cringe
+│ ⬩ .cry
+│ ⬩ .kill
+│ ⬩ .slap
+│ ⬩ .smug
+│ ⬩ .yeet
+│
+╰═════❒
+
+> ${config.DESCRIPTION}`,
+                image: true,
+                imageUrl: config.MENU_IMAGES?.['9'] || config.MENU_IMAGE_URL || 'https://files.catbox.moe/lvomei.jpg'
+            },
+            '10': {
+                title: "🏠 *Main Menu* 🏠",
+                content: `
+╭═✧〔 🏕️ *ᴍᴀɪɴ ᴍᴇɴᴜ* 〕✧═╮
+│
+│ 🤖 *sᴛᴀᴛᴜs* 📊
+│ ⊹ .alive
+│ ⊹ .alive2
+│ ⊹ .online
+│ ⊹ .ping
+│ ⊹ .ping2
+│ ⊹ .uptime
+│ ⊹ .version
+│
+│ 📅 *sʏsᴛᴇᴍ* ⏰
+│ ⊹ .date
+│ ⊹ .time
+│
+│ 📚 *ɪɴғᴏ* ℹ️
+│ ⊹ .bothosting
+│ ⊹ .env
+│ ⊹ .fetch
+│ ⊹ .repo
+│ ⊹ .support
+│
+│ 🆘 *ʜᴇʟᴘ* ❓
+│ ⊹ .help
+│ ⊹ .menu
+│ ⊹ .menu2
+│ ⊹ .menu3
+│ ⊹ .list
+│ ⊹ .report
+│
+│ 👤 *ᴏᴡɴᴇʀ* 👑
+│ ⊹ .owner
+│
+╰═════❍
+
+> ${config.DESCRIPTION}`,
+                image: true,
+                imageUrl: config.MENU_IMAGES?.['10'] || config.MENU_IMAGE_URL || 'https://files.catbox.moe/lvomei.jpg'
+            },
+            '11': {
+                title: "🎨 *Logo Maker* 🎨",
+                content: `
+╭═✦〔 🎨 *ʟᴏɢᴏ ᴍᴀᴋᴇʀ* 〕✦═╮
+│
+│ 🎨 *ᴛʜᴇᴍᴇs* 🌟
+│ ⬢ .america
+│ ⬢ .blackpink
+│ ⬢ .naruto
+│ ⬢ .nigeria
+│ ⬢ .pornhub
+│ ⬢ .sadgirl
+│ ⬢ .thor
+│ ⬢ .zodiac
+│
+│ ✨ *ᴇғғᴇᴄᴛs* 💥
+│ ⬢ .3dcomic
+│ ⬢ .3dpaper
+│ ⬢ .boom
+│ ⬢ .bulb
+│ ⬢ .clouds
+│ ⬢ .frozen
+│ ⬢ .futuristic
+│ ⬢ .galaxy
+│ ⬢ .luxury
+│ ⬢ .neonlight
+│ ⬢ .sunset
+│ ⬢ .typography
+│ ⬢ .ytlogo
+│
+│ 🦁 *ᴄʜᴀʀᴀᴄᴛᴇʀs* 🐾
+│ ⬢ .angelwings
+│ ⬢ .bear
+│ ⬢ .cat
+│ ⬢ .deadpool
+│ ⬢ .devilwings
+│ ⬢ .dragonball
+│ ⬢ .sans
+│
+│ 🖌️ *ᴄʀᴇᴀᴛɪᴠᴇ* 🎨
+│ ⬢ .birthday
+│ ⬢ .castle
+│ ⬢ .eraser
+│ ⬢ .hacker
+│ ⬢ .leaf
+│ ⬢ .paint
+│ ⬢ .tatoo
+│
+╰════❍
+
+> ${config.DESCRIPTION}`,
+                image: true,
+                imageUrl: config.MENU_IMAGES?.['11'] || config.MENU_IMAGE_URL || 'https://files.catbox.moe/lvomei.jpg'
+            },
+            '12': {
+                title: "⚙️ *Settings Menu* ⚙️",
+                content: `
+╭═✧〔 ⚙️ *sᴇᴛᴛɪɴɢs ᴍᴇɴᴜ* 〕✧═╮
+│
+│ 🤖 *ʙᴇʜᴀᴠɪᴏʀ* 🤖
+│ ➢ .aichat
+│ ➢ .auto-react
+│ ➢ .auto-recording
+│ ➢ .auto-reply
+│ ➢ .auto-seen
+│ ➢ .auto-sticker
+│ ➢ .auto-typing
+│ ➢ .auto-voice
+│ ➢ .customreact
+│ ➢ .fakerecording
+│ ➢ .faketyping
+│ ➢ .heartreact
+│ ➢ .ownerreact
+│ ➢ .status-react
+│ ➢ .status-reply
+│
+│ 🔧 *ɢʀᴏᴜᴘ* 👥
+│ ➢ .admin-events
+│ ➢ .goodbye
+│ ➢ .welcome
+│ ➢ .mention-reply
+│
+│ ⚙️ *sʏsᴛᴇᴍ* 🛠️
+│ ➢ .always-online
+│ ➢ .mode
+│ ➢ .setprefix
+│ ➢ .setvar
+│
+│ 🛡️ *ғɪʟᴛᴇʀs* 🔒
+│ ➢ .anti-bad
+│ ➢ .antidelete
+│
+│ 📝 *ᴘʀᴏғɪʟᴇ* 🧑
+│ ➢ .autobio
+│
+╰═══❍
+
+> ${config.DESCRIPTION}`,
+                image: true,
+                imageUrl: config.MENU_IMAGES?.['12'] || config.MENU_IMAGE_URL || 'https://files.catbox.moe/9qoecp.jpg'
+            },
+            '13': {
+                title: "🎵 *Audio Menu* 🎵",
+                content: `
+╭═✦〔 🎵 *ᴀᴜᴅɪᴏ ᴍᴇɴᴜ* 〕✦═╮
+│
+│ 🎵 *ᴇғғᴇᴄᴛs* 🎶
+│ ⬩ .baby
+│ ⬩ .bass
+│ ⬩ .blown
+│ ⬩ .chipmunk
+│ ⬩ .deep
+│ ⬩ .demon
+│ ⬩ .earrape
+│ ⬩ .fast
+│ ⬩ .fat
+│ ⬩ .nightcore
+│ ⬩ .radio
+│ ⬩ .reverse
+│ ⬩ .robot
+│ ⬩ .slow
+│ ⬩ .smooth
+│ ⬩ .tupai
+│
+╰═════❍
+
+> ${config.DESCRIPTION}`,
+                image: true,
+                imageUrl: config.MENU_IMAGES?.['13'] || config.MENU_IMAGE_URL || 'https://files.catbox.moe/ceeo6k.jpg'
+            },
+            '14': {
+                title: "🔒 *Privacy Menu* 🔒",
+                content: `
+╭═✧〔 🔒 *ᴘʀɪᴠᴀᴄʏ ᴍᴇɴᴜ* 〕✧═╮
+│
+│ 🔒 *sᴇᴛᴛɪɴɢs* 🛡️
+│ ✷ .anticall
+│ ✷ .blocklist
+│ ✷ .getbio
+│ ✷ .groupsprivacy
+│ ✷ .privacy
+│ ✷ .setmyname
+│ ✷ .setonline
+│ ✷ .setppall
+│ ✷ .updatebio
+│ ✷ .pmblock
+│
+╰════❍
+
+> ${config.DESCRIPTION}`,
+                image: true,
+                imageUrl: config.MENU_IMAGES?.['14'] || config.MENU_IMAGE_URL || 'https://files.catbox.moe/jw8h57.jpg'
+            }
+        };
+
+        // Message handler with improved cleanup
         const handler = async (msgData) => {
             try {
                 const receivedMsg = msgData.messages[0];
                 if (!receivedMsg?.message || !receivedMsg.key?.remoteJid) return;
 
                 const isReplyToMenu = receivedMsg.message.extendedTextMessage?.contextInfo?.stanzaId === messageID;
-                if (!isReplyToMenu) return;
+                
+                if (isReplyToMenu) {
+                    const receivedText = receivedMsg.message.conversation || 
+                                        receivedMsg.message.extendedTextMessage?.text;
+                    const senderID = receivedMsg.key.remoteJid;
 
-                const receivedText = receivedMsg.message.conversation || receivedMsg.message.extendedTextMessage?.text;
-                const senderID = receivedMsg.key.remoteJid;
+                    if (menuData[receivedText]) {
+                        const selectedMenu = menuData[receivedText];
+                        
+                        try {
+                            if (selectedMenu.image) {
+                                await malvin.sendMessage(
+                                    senderID,
+                                    {
+                                        image: { url: selectedMenu.imageUrl },
+                                        caption: selectedMenu.content,
+                                        contextInfo
+                                    },
+                                    { quoted: receivedMsg }
+                                );
+                            } else {
+                                await malvin.sendMessage(
+                                    senderID,
+                                    { text: selectedMenu.content, contextInfo },
+                                    { quoted: receivedMsg }
+                                );
+                            }
 
-                if (menuData[receivedText]) {
-                    const selectedMenu = menuData[receivedText];
-                    try {
-                        if (selectedMenu.image) {
+                            await malvin.sendMessage(senderID, {
+                                react: { text: '✅', key: receivedMsg.key }
+                            });
+
+                            // Remove handler after successful menu selection
+                            malvin.ev.off('messages.upsert', handler);
+                        } catch (e) {
+                            console.error('Menu reply error:', e);
                             await malvin.sendMessage(
                                 senderID,
-                                { image: { url: selectedMenu.imageUrl }, caption: selectedMenu.content, contextInfo },
+                                { text: selectedMenu.content, contextInfo },
                                 { quoted: receivedMsg }
                             );
-                        } else {
-                            await malvin.sendMessage(senderID, { text: selectedMenu.content, contextInfo }, { quoted: receivedMsg });
+                            malvin.ev.off('messages.upsert', handler);
                         }
-                        await malvin.sendMessage(senderID, { react: { text: '✅', key: receivedMsg.key } });
-                        malvin.ev.off('messages.upsert', handler);
-                    } catch (e) {
-                        console.error('Menu reply error:', e);
-                        await malvin.sendMessage(senderID, { text: selectedMenu.content, contextInfo }, { quoted: receivedMsg });
-                        malvin.ev.off('messages.upsert', handler);
+                    } else {
+                        await malvin.sendMessage(
+                            senderID,
+                            {
+                                text: `❌ *Invalid Option!* ❌\n\nPlease reply with a number between 1-14 to select a menu.\n\n*Example:* Reply with "1" for Download Menu\n\n> ${config.DESCRIPTION}`,
+                                contextInfo
+                            },
+                            { quoted: receivedMsg }
+                        );
                     }
-                } else {
-                    await malvin.sendMessage(senderID, {
-                        text: `❌ *Invalid Option!* ❌\nReply with a number 1-14 to select a menu.\nExample: "1" for Download Menu\n> ${config.DESCRIPTION}`,
-                        contextInfo
-                    }, { quoted: receivedMsg });
                 }
             } catch (e) {
                 console.error('Handler error:', e);
@@ -181,193 +879,17 @@ malvin({
         };
 
         malvin.ev.on('messages.upsert', handler);
-        setTimeout(() => malvin.ev.off('messages.upsert', handler), 300000);
+        // Cleanup after 5 minutes or on successful menu selection
+        setTimeout(() => {
+            malvin.ev.off('messages.upsert', handler);
+        }, 300000);
 
     } catch (e) {
         console.error('Menu Error:', e);
         await malvin.sendMessage(
             from,
-            { text: `❌ Menu system is busy. Please try again later.\n> ${config.DESCRIPTION}` },
+            { text: `❌ Menu system is currently busy. Please try again later.\n\n> ${config.DESCRIPTION}` },
             { quoted: mek }
         );
     }
-});│ ⏰  Time      : ${time}
-│ 📅  Date      : ${date}
-│ 🔄  Uptime    : ${runtime(process.uptime())}
-│ ⚙️  Mode      : ${config.MODE || 'Public'}
-│ 📡  Platform  : ${os.platform()}
-│ ⌨️  Prefix    : [ ${prefix} ]
-│ 🧩  Plugins   : ${commands.length}
-│ 👑  Developer : ${config.OWNER_NAME || 'Dev Sung'}
-│ 🚀  Version   : ${config.version || '2.5.0'}
-│
-╰─❖────────────────────────────❖─╯
-`;
-
-        // Group commands by category
-        const categories = {};
-        for (const cmd of commands) {
-            if (cmd.category && !cmd.dontAdd && cmd.pattern) {
-                categories[cmd.category] = categories[cmd.category] || [];
-                categories[cmd.category].push(cmd.pattern.split('|')[0]);
-            }
-        }
-
-        // Add sorted categories with tiny caps
-        for (const cat of Object.keys(categories).sort()) {
-            menu += `\n\n╭═✦〔 ${toTinyCaps(cat)} ${toTinyCaps('Menu')} 〕✦═╮\n`;
-            for (const cmd of categories[cat].sort()) {
-                menu += `│ ➸ ${prefix}${cmd}\n`;
-            }
-            menu += `╰════════════`;
-        }
-
-        menu += `\n\n> ${config.DESCRIPTION || toTinyCaps('Explore the bot commands!')}`;
-
-        // Context info for image message
-        const imageContextInfo = {
-            mentionedJid: [sender],
-            forwardingScore: 999,
-            isForwarded: true,
-            forwardedNewsletterMessageInfo: {
-                newsletterJid: config.NEWSLETTER_JID || '120363402507750390@newsletter',
-                newsletterName: config.OWNER_NAME || toTinyCaps('Sung Tech'),
-                serverMessageId: 143
-            }
-        };
-
-        // Send menu image
-        await malvin.sendMessage(
-            from,
-            {
-                image: { url: config.MENU_IMAGE_URL || 'https://files.catbox.moe/lvomei.jpg' },
-                caption: menu,
-                contextInfo: imageContextInfo
-            },
-            { quoted: mek }
-        );
-
-        // Send audio if configured
-        if (config.MENU_AUDIO_URL) {
-            await new Promise(resolve => setTimeout(resolve, 1000));
-            await malvin.sendMessage(
-                from,
-                {
-                    audio: { url: config.MENU_AUDIO_URL },
-                    mimetype: 'audio/mp4',
-                    ptt: true,
-                    contextInfo: {
-                        mentionedJid: [sender],
-                        forwardingScore: 999,
-                        isForwarded: true,
-                        forwardedNewsletterMessageInfo: {
-                            newsletterName: config.OWNER_NAME || toTinyCaps('Sung Tech'),
-                            serverMessageId: 143
-                        }
-                    }
-                },
-                { quoted: mek }
-            );
-        }
-
-    } catch (e) {
-        console.error('Menu Error:', e.message);
-        await reply(`❌ ${toTinyCaps('Error')}: Failed to show menu. Try again.\n${toTinyCaps('Details')}: ${e.message}`);
-    }
-});    const contextInfo = {
-      mentionedJid: [`${config.OWNER_NUMBER}@s.whatsapp.net`],
-      forwardingScore: 999,
-      isForwarded: true,
-      // ⚠️ keep this commented unless your Baileys supports it
-      // forwardedNewsletterMessageInfo: {
-      //   newsletterJid: config.NEWSLETTER_JID,
-      //   newsletterName: 'Cyberia-MD',
-      //   serverMessageId: 143,
-      // },
-    };
-
-    const menuCaption = `
-╭⟬⟭–––––––––––⟬⟭
-   🤖 ${config.BOT_NAME}
-–––––––––––––––––––––––
-👤 Owner     » @${config.OWNER_NUMBER}
-🌍 Mode      » ${config.MODE.toLowerCase()}
-⏰ Time      » ${time}
-📅 Date      » ${date}
-🛠️ Prefix    » ${prefix}
-📈 Commands  » ${totalCommands}
-🌐 Timezone  » ${timezone}
-🚀 Version   » ${config.version}
-👥 Users     » ${forks}
-⟬⟭–––––––––––⟬⟭
-
-📚 Menu Navigation
-✦ Reply with a number
-✦ Or type: *.1* / *.dlmenu*
-`.trim();
-
-    // Send main menu
-    const sentMsg = await client.sendMessage(
-      from,
-      {
-        image: { url: config.MENU_IMAGE_URL || 'https://files.catbox.moe/qumhu4.jpg' },
-        caption: menuCaption,
-        contextInfo,
-      },
-      { quoted: mek }
-    );
-
-    // ✅ load your menuData inline (or external file if you prefer)
-    const menuData = {
-      "1": {
-        content: "📂 Downloader Menu\n\n1. *.ytmp3* - YouTube audio\n2. *.ytmp4* - YouTube video\n...",
-        imageUrl: 'https://files.catbox.moe/qumhu4.jpg'
-      },
-      "2": {
-        content: "🎭 Fun Menu\n\n1. *.joke*\n2. *.meme*\n...",
-        imageUrl: 'https://files.catbox.moe/qumhu4.jpg'
-      },
-      // ... add your other menus (3 → 14) here
-    };
-
-    // Handler for replies
-    const handler = async (msgData) => {
-      try {
-        const receivedMsg = msgData.messages[0];
-        if (!receivedMsg?.message) return;
-
-        const text = receivedMsg.message.conversation ||
-                    receivedMsg.message.extendedTextMessage?.text;
-        if (!text) return;
-
-        if (menuData[text]) {
-          const selected = menuData[text];
-          await client.sendMessage(
-            receivedMsg.key.remoteJid,
-            {
-              image: { url: selected.imageUrl },
-              caption: selected.content,
-              contextInfo,
-            },
-            { quoted: receivedMsg }
-          );
-
-          await client.sendMessage(receivedMsg.key.remoteJid, {
-            react: { text: '✅', key: receivedMsg.key },
-          });
-
-          client.ev.off('messages.upsert', handler); // stop listening
-        }
-      } catch (err) {
-        console.error('Menu reply handler error:', err);
-      }
-    };
-
-    client.ev.on('messages.upsert', handler);
-    setTimeout(() => client.ev.off('messages.upsert', handler), 300000); // auto-clean
-
-  } catch (err) {
-    console.error('Menu Error:', err);
-    return reply('❌ Menu system busy, try again later.');
-  }
 });
