@@ -22,22 +22,26 @@ malvin({
     const name = pushname || "there";
 
     const caption = `
-╭─❖ 🌸 「 *${tinyCaps("Cyberia Developer")}* 」 🌸 ❖─╮
+╭─❖ 🌸「 *${tinyCaps("Cyberia Developer")}* 」🌸 ❖─╮
 │
-│ 👋 ʜᴇʏ, *${name}*!
+│ (≧▽≦)/~ ʜᴇʟʟᴏ *${name}*!
 │
-│ 🤖 ɪ'ᴍ *Dev Sung*, ᴄʀᴇᴀᴛᴏʀ & ᴍᴀɪɴᴛᴀɪɴᴇʀ
-│    ᴏғ ᴛʜɪs sᴍᴀʀᴛ ᴡʜᴀᴛꜱᴀᴘᴘ ʙᴏᴛ!
+│ 💻 *Dev Sung* is the creator of this bot ✨
+│    Bringing anime vibes into Cyberia ⚡
 │
-│ 👨‍💻 *Owner Info* 💼
+│ 👑 *OWNER INFO*
 │ ────────────────
-│ 🧠 Name    : Dev Sung
-│ 🎂 Age     : 20+
-│ 📞 Contact : wa.me/27649342626
-│ 📺 YouTube : for updates
-│            https://youtube.com/@malvintech2
+│ 🧠 ɴᴀᴍᴇ   : Dev Sung
+│ 🎂 ᴀɢᴇ    : 20+
+│ 📞 ᴄᴏɴᴛᴀᴄᴛ : wa.me/12363621958
+│ 📺 ʏᴏᴜᴛᴜʙᴇ : 🌸 Updates & Guides
+│              https://youtube.com/@malvintech2
 │
-╰─❖ 🌟 ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴄʏʙᴇʀɪᴀ 🌟 ❖─╯
+╰─❖───────────────❖─╯
+
+🌸 *Arigatou for checking, Senpai!* 🌸
+⚔️ *Powered by Cyberia-MD* ⚔️
+(✿◠‿◠) ~ Sᴛᴀʏ Oᴛᴀᴋᴜ 💮
 `.trim();
 
     await malvin.sendMessage(
@@ -55,84 +59,8 @@ malvin({
             serverMessageId: 143
           },
           externalAdReply: {
-            title: "Cyberia-MD Bot",
+            title: "Cyberia-MD Bot 🌸",
             body: "Created with ❤️ by Dev Sung",
-            thumbnailUrl: 'https://files.catbox.moe/lvomei.jpg',
-            mediaType: 1,
-            renderSmallerThumbnail: true,
-            showAdAttribution: true,
-            mediaUrl: "https://youtube.com/@malvintech2",
-            sourceUrl: "https://youtube.com/@malvintech2"
-          }
-        }
-      },
-      { quoted: mek }
-    );
-  } catch (e) {
-    console.error("Error in .owner command:", e);
-    return reply(`❌ Error: ${e.message || e}`);
-  }
-});│ 📺 YouTube : for updates
-│            https://youtube.com/@malvintech2
-│
-╰─❖ 🌟 ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴄʏʙᴇʀɪᴀ 🌟 ❖─╯
-`.trim();
-
-    await client.sendMessage(
-      from,
-      {
-        image: { url: 'https://files.catbox.moe/lvomei.jpg' },
-        caption,
-        contextInfo: {
-          mentionedJid: [m.sender],
-          forwardingScore: 999,
-          isForwarded: true,
-          forwardedNewsletterMessageInfo: {
-            newsletterJid: '120363402507750390@newsletter',
-            newsletterName: '🪀『 Cyberia-MD』🪀',
-            serverMessageId: 143
-          },
-          externalAdReply: {
-            title: "Cyberia-MD Bot",
-            body: "Created with ❤️ by Dev Sung",
-            thumbnailUrl: 'https://files.catbox.moe/lvomei.jpg',  // ⚠️ might need buffer on some versions
-            mediaType: 1,
-            renderSmallerThumbnail: true,
-            showAdAttribution: true,
-            mediaUrl: "https://youtube.com/@malvintech2",
-            sourceUrl: "https://youtube.com/@malvintech2"
-          }
-        }
-      },
-      { quoted: mek }
-    );
-  } catch (e) {
-    console.error("Error in .dev command:", e);
-    return reply(`❌ Error: ${e.message || e}`);
-  }
-});│ 📺 YouTube : for updates
-│            https://youtube.com/@malvintech2
-│
-╰─❖ 🌟 ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴄʏʙᴇʀɪᴀ 🌟 ❖─╯
-`.trim();
-
-    await malvin.sendMessage(
-      from,
-      {
-        image: { url: 'https://files.catbox.moe/lvomei.jpg' },
-        caption,
-        contextInfo: {
-          mentionedJid: [m.sender],
-          forwardingScore: 999,
-          isForwarded: true,
-          forwardedNewsletterMessageInfo: {
-            newsletterJid: '120363402507750390@newsletter',
-            newsletterName: '🪀『 Cyberia-MD』🪀',
-            serverMessageId: 143
-          },
-          externalAdReply: {
-            title: "Cyberia-MD Bot",
-            body: "Created with ❤️ by dev sung",
             thumbnailUrl: 'https://files.catbox.moe/lvomei.jpg',
             mediaType: 1,
             renderSmallerThumbnail: true,
