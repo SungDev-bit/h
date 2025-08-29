@@ -29,108 +29,22 @@ malvin({
         const time = moment().tz(timezone).format('HH:mm:ss');
         const date = moment().tz(timezone).format('dddd, DD MMMM YYYY');
 
-        const userId = (typeof sender === 'string' ? sender : sender?.id || 'user').split('@')[0];
-
-        // Menu header
+        // Menu header with tiny caps
         let menu = `
-╭──❖ 🌸 *${toTinyCaps(config.BOT_NAME || 'Cyberia Bot')}* 🌸 ❖──╮
+╭═✦〔 🤖 *${toTinyCaps(config.BOT_NAME || 'Cyberia Bot')}* 〕✦═╮
 │
-│ 👤 User      : @${userId}
-│ ⏰ Time      : ${time}
-│ 📅 Date      : ${date}
-│ 🔄 Uptime    : ${runtime(process.uptime())}
-│ ⚙️ Mode      : ${config.MODE || 'Public'}
-│ 📡 Platform  : ${os.platform()}
-│ ⌨️ Prefix    : [ ${prefix} ]
-│ 🧩 Plugins   : ${Array.isArray(commands) ? commands.length : 0}
-│ 👑 Developer : ${config.OWNER_NAME || 'Dev-Sung'}
-│ 🚀 Version   : ${config.version || '2.5.0'}
+│ 👤 ${toTinyCaps('User')}: @${sender.split('@')[0]}
+│ ⏰ ${toTinyCaps('Time')}: ${time}
+│ 📅 ${toTinyCaps('Date')}: ${date}
+│ 🔄 ${toTinyCaps('Runtime')}: ${runtime(process.uptime())}
+│ ⚙️ ${toTinyCaps('Mode')}: ${config.MODE || 'Public'}
+│ 📡 ${toTinyCaps('Platform')}: ${os.platform()}
+│ ⌨️ ${toTinyCaps('Prefix')}: [ ${prefix} ]
+│ 🧩 ${toTinyCaps('Plugins')}: ${commands.length}
+│ 👑 ${toTinyCaps('Dev')}: ${config.OWNER_NAME || toTinyCaps('Dev-Sung')}
+│ 🚀 ${toTinyCaps('Version')}: ${config.version || '2.5.0'}
 │
-╰──❖─────────────────────────❖──╯
-`;
-
-        // Group commands by category
-        const categories = {};
-        for (const cmd of commands || []) {
-            if (cmd.category && !cmd.dontAdd && cmd.pattern) {
-                categories[cmd.category] = categories[cmd.category] || [];
-                categories[cmd.category].push(cmd.pattern.split('|')[0]);
-            }
-        }
-
-        // Add sorted categories
-        for (const cat of Object.keys(categories).sort()) {
-            menu += `\n╭─❖ ✦ ${toTinyCaps(cat)} ${toTinyCaps('Menu')} ✦ ❖─╮\n`;
-            for (const cmd of categories[cat].sort()) {
-                menu += `│ ➤ ${prefix}${cmd}\n`;
-            }
-            menu += `╰──❖────────────────────❖──╯\n`;
-        }
-
-        menu += `\n> ${config.DESCRIPTION || toTinyCaps('Explore the bot commands!')}`;
-
-        // Context info
-        const imageContextInfo = {
-            mentionedJid: [sender],
-            forwardingScore: 999,
-            isForwarded: true,
-            forwardedNewsletterMessageInfo: {
-                newsletterJid: config.NEWSLETTER_JID || '120363402507750390@newsletter',
-                newsletterName: config.OWNER_NAME || toTinyCaps('Sung Tech'),
-                serverMessageId: 143
-            }
-        };
-
-        // Send menu image
-        await malvin.sendMessage(
-            from,
-            {
-                image: { url: config.MENU_IMAGE_URL || 'https://files.catbox.moe/lvomei.jpg' },
-                caption: menu,
-                contextInfo: imageContextInfo
-            },
-            { quoted: mek }
-        );
-
-        // Send audio if configured
-        if (config.MENU_AUDIO_URL) {
-            await new Promise(resolve => setTimeout(resolve, 1000));
-            await malvin.sendMessage(
-                from,
-                {
-                    audio: { url: config.MENU_AUDIO_URL },
-                    mimetype: 'audio/mp4',
-                    ptt: true,
-                    contextInfo: {
-                        mentionedJid: [sender],
-                        forwardingScore: 999,
-                        isForwarded: true,
-                        forwardedNewsletterMessageInfo: {
-                            newsletterJid: config.NEWSLETTER_JID || '120363402507750390@newsletter',
-                            newsletterName: config.OWNER_NAME || toTinyCaps('Sung Tech'),
-                            serverMessageId: 143
-                        }
-                    }
-                },
-                { quoted: mek }
-            );
-        }
-
-    } catch (e) {
-        console.error('Menu Error:', e.message);
-        await reply(`❌ ${toTinyCaps('Error')}: Failed to show menu. Try again.\n${toTinyCaps('Details')}: ${e.message}`);
-    }
-});│ ⏰ Time      : ${time}
-│ 📅 Date      : ${date}
-│ 🔄 Uptime    : ${runtime(process.uptime())}
-│ ⚙️ Mode      : ${config.MODE || 'Public'}
-│ 📡 Platform  : ${os.platform()}
-│ ⌨️ Prefix    : [ ${prefix} ]
-│ 🧩 Plugins   : ${commands.length}
-│ 👑 Developer : ${config.OWNER_NAME || 'Dev-Sung'}
-│ 🚀 Version   : ${config.version || '2.5.0'}
-│
-╰──❖─────────────────────────❖──╯
+╰═✪╾┄┄┄┄┄┄┄┄┄┄┄┄╼✪═╯
 `;
 
         // Group commands by category
@@ -142,18 +56,18 @@ malvin({
             }
         }
 
-        // Add sorted categories
+        // Add sorted categories with tiny caps
         for (const cat of Object.keys(categories).sort()) {
-            menu += `\n╭─❖ ✦ ${toTinyCaps(cat)} ${toTinyCaps('Menu')} ✦ ❖─╮\n`;
+            menu += `\n\n╭═✦〔 ${toTinyCaps(cat)} ${toTinyCaps('Menu')} 〕✦═╮\n`;
             for (const cmd of categories[cat].sort()) {
-                menu += `│ ➤ ${prefix}${cmd}\n`;
+                menu += `│ ➸ ${prefix}${cmd}\n`;
             }
-            menu += `╰──❖────────────────────❖──╯\n`;
+            menu += `╰════════════`;
         }
 
-        menu += `\n> ${config.DESCRIPTION || toTinyCaps('Explore the bot commands!')}`;
+        menu += `\n\n> ${config.DESCRIPTION || toTinyCaps('Explore the bot commands!')}`;
 
-        // Context info
+        // Context info for image message
         const imageContextInfo = {
             mentionedJid: [sender],
             forwardingScore: 999,
