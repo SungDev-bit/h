@@ -160,7 +160,7 @@ async function loadSession() {
       console.log(chalk.green("[ ✅ ] MEGA session downloaded successfully"));
       return JSON.parse(data.toString());
     } else {
-      throw new Error("Invalid SESSION_ID format. Use 'cyberia~' for base64 or 'drakonis~' for MEGA.nz");
+      throw new Error("Invalid SESSION_ID format. Use 'cyberia~' for base64 or 'cyberia~' for MEGA.nz");
     }
   } catch (error) {
     console.error(chalk.red("❌ Error loading session:", error.message));
@@ -285,27 +285,20 @@ async function connectToWA() {
         const welcomeAudio = "https://files.catbox.moe/z47dgd.mp3";
 
         const upMessage = `🤖 ${botname} 🔥
-🌸✨⚡ 𝙲𝚘𝚗𝚗𝚎𝚌𝚝𝚎𝚍 & 𝚁𝚎𝚊𝚍𝚢! ⚡✨🌸
+✅ Connected & Ready!
 
-🎀 𝙴𝚗𝚝𝚎𝚛 𝚝𝚑𝚎 𝚞𝚕𝚝𝚒𝚖𝚊𝚝𝚎 𝚊𝚗𝚒𝚖𝚎 𝚊ᴅᴠᴇɴᴛᴜʀᴇ ᴡɪᴛʜ ʏᴏᴜʀ ʙᴏᴛ! 🌌✨
-
+🚀 ᴜʟᴛɪᴍᴀᴛᴇ ᴡʜᴀᴛsᴀᴘᴘ ʙᴏᴛ ᴇxᴘᴇʀɪᴇɴᴄᴇ
 ───────────────
-🌟 ʙᴏᴛ ᴍᴀsᴛᴇʀ: ${ownername} 💖  
-🎴 sᴛᴀʀ ʀᴇᴘᴏ: ${repoUrl} 🌠  
-🔔 ғᴏʟʟᴏᴡ ᴛʜᴇ ᴊᴏᴜʀɴᴇʏ: ${mrmalvin} 🌸  
-🛠️ ᴘʀᴇғɪx: \`${prefix}\` 🐾  
-🎥 ᴛᴜᴛᴏʀɪᴀʟs: https://youtube.com/@malvintech2 ✨
+🌟 sᴛᴀʀ ʀᴇᴘᴏ: ${repoUrl}
+🔔 ғᴏʟʟᴏᴡ: ${mrmalvin}
+🔧 ᴘʀᴇғɪx: \`${prefix}\`
+🎥 ᴛᴜᴛᴏʀɪᴀʟs: https://youtube.com/@malvintech2
 ───────────────
-
-🌸 ᴘᴏᴡᴇʀᴇᴅ ʙʏ 𝚌ʏʙᴇʀɪᴀ | © ${ownername} 🌸  
-
-💫 ɢᴇᴛ ʀᴇᴀᴅʏ ᴛᴏ ᴇxᴘʟᴏʀᴇ ᴀɴɪᴍᴇ ᴍᴀɢɪᴄ! 🌈✨  
-
-🌟🍥✨💖🐾🌸💫`;
+© ${ownername} | ᴘᴏᴡᴇʀᴇᴅ ʙʏ cyberia`;
 
         try {
           await malvin.sendMessage(jid, {
-            image: { url: "https://files.catbox.moe/lvomei.jpg" },
+            image: { url: "https://files.catbox.moe/rytuou.jpg" },
             caption: upMessage,
           }, { quoted: null });
           console.log(chalk.green("[ 📩 ] Connection notice sent successfully with image"));
@@ -1132,15 +1125,12 @@ app.get("/", (req, res) => {
 });
 app.listen(port, () =>
   console.log(chalk.cyan(`
-╭───[ 🌸✨ WELCOME, DEAR USER! ✨🌸 ]─
-│
-│ 🎀 Ready to dive into a magical anime adventure?  
-│ If you love using this bot, please  
-│ ⭐ Star it & 🍴 Fork it on GitHub!  
-│ Your support helps it grow and sparkle! 💖  
-│
-│ 🌈 Enjoy your journey with us! 🌟
-╰───────────────────────────────`))
+╭──[ 🤖 WELCOME TO CYBERIA UNIVERSE!]─
+│         ♥️  FROM DEV SUNG
+│ If you enjoy using this bot,
+│ please ⭐  Star it & 🍴  Fork it on GitHub!
+│ your support keeps it growing! 💙 
+╰─────────`))
 );
 
 setTimeout(() => {
