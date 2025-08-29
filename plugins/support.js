@@ -10,7 +10,7 @@ const { malvin } = require('../malvin');
 const { runtime } = require('../lib/functions');
 
 const more = String.fromCharCode(8206);
-const readMore = more.repeat(100); // Expandable section
+const readMore = more.repeat(100); // Compact expandable section
 
 malvin({
     pattern: "support",
@@ -20,41 +20,42 @@ malvin({
     react: "📡",
     filename: __filename
 }, 
-async (malvin, mek, m, { from, reply, pushname }) => {
+async (malvin, mek, m, {
+    from, reply, pushname
+}) => {
     try {
         const currentTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
         const uptimeFormatted = runtime(process.uptime());
 
         const message = `
-╭─❖ ✨ 「 *Cyberia-MD Support Hub* 」 ✨ ❖─╮
+╭──❖ *Cyberia-MD ꜱᴜᴘᴘᴏʀᴛ* ❖──╮
 │
-│ 👤 *Hello, ${pushname || "User"}!*
+│ 👨‍💻 *ᴅᴇᴠᴇʟᴏᴘᴇʀ*: dev sung 🇿🇼
+│ ⚙️ *ᴍᴏᴅᴇ*: 𝙼𝙾𝙽𝙾𝚂𝙿𝙰𝙲𝙴 ${config.MODE}
+│ ⏳ *ᴜᴘᴛɪᴍᴇ*: 𝙼𝙾𝙽𝙾𝚂𝙿𝙰𝙲𝙴 ${uptimeFormatted}
+│ 🔑 *ᴘʀᴇꜰɪx*: 𝙼𝙾𝙽𝙾𝚂𝙿𝙰𝙲𝙴 ${config.PREFIX}
+│ 🛠️ *ᴠᴇʀꜱɪᴏɴ*: 𝙼𝙾𝙽𝙾𝚂𝙿𝙰𝙲𝙴 ${config.version}
+│ 🕒 *ᴛɪᴍᴇ*: 𝙼𝙾𝙽𝙾𝚂𝙿𝙰𝙲𝙴 ${currentTime}
 │
-│ 👨‍💻 *Developer:* Dev Sung 🇿🇼
-│ ⚙️ *Mode:* ${config.MODE || "Public"}
-│ ⏳ *Uptime:* ${uptimeFormatted}
-│ 🔑 *Prefix:* ${config.PREFIX || "."}
-│ 🛠️ *Version:* ${config.version || "2.5.0"}
-│ 🕒 *Time:* ${currentTime}
-│
-╰─❖─────────────────────❖─╯
+╰────────────────╯
 
-💫 *Stay connected with Cyberia-MD:* ${readMore}
+✨ *ᴄᴏɴɴᴇᴄᴛ ᴡɪᴛʜ Cyberia-MD* ${readMore}
 
-🔔 *WhatsApp Channel:*  
-╰─> https://whatsapp.com/channel/0029VbB3YxTDJ6H15SKoBv3S
+🔔 *ᴡʜᴀᴛꜱᴀᴘᴘ ᴄʜᴀɴɴᴇʟ*  
+🔗 https://whatsapp.com/channel/0029VbB3YxTDJ6H15SKoBv3S
 
-🎥 *YouTube Updates:*  
-╰─> https://youtube.com/@malvintech
+🎥 *ʏᴏᴜᴛᴜʙᴇ ᴄʜᴀɴɴᴇʟ*  
+🔗 https://youtube.com/@malvintech
 
-📞 *Contact Developer Directly:*  
-╰─> wa.me/12363621958?text=Hi%20Dev,%20I%20need%20support!
+📞 *ᴄᴏɴᴛᴀᴄᴛ ᴅᴇᴠᴇʟᴏᴘᴇʀ*  
+🔗 wa.me/12363621958?text=Hi%20dev,%20I%20need%20support!
 
-💡 *Join the XD Community & get the latest tips!*
+ 💡 *ᴊᴏɪɴ ᴛʜᴇ xᴅ ᴄᴏᴍᴍᴜɴɪᴛʏ!*
+ 
+> 🚀 *ᴘᴏᴡᴇʀᴇᴅ ʙʏ dev sung*  
+  
 
-✨ *Cyberia-MD is fully operational & ready to assist!*  
-🚀 *Powered by Dev Sung*
-`.trim();
+        `.trim();
 
         await malvin.sendMessage(from, {
             image: { url: 'https://files.catbox.moe/lvomei.jpg' },
@@ -73,6 +74,6 @@ async (malvin, mek, m, { from, reply, pushname }) => {
 
     } catch (e) {
         console.error("Support Cmd Error:", e);
-        await reply(`⚠️ Error: ${e.message}`);
+        reply(`⚠️ Error: ${e.message}`);
     }
 });
