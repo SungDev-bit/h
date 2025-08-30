@@ -12,49 +12,47 @@ malvin({
   pattern: "live",
   desc: "check if the bot is alive and operational",
   category: "main",
-  react: "🌸",
+  react: "🟢",
   filename: __filename
 },
 async (malvin, mek, m, { from, sender, pushname, reply }) => {
   const startTime = process.hrtime(); // ꜱᴛᴀʀᴛ ᴛʀᴀᴄᴋɪɴɢ ʀᴇꜱᴘᴏɴꜱᴇ ᴛɪᴍᴇ
   try {
-    // 🌸 anime-style caption 🌸
+    // ᴅʏɴᴀᴍɪᴄ ᴄᴀᴘᴛɪᴏɴ ᴡɪᴛʜ ᴠᴇʀꜱɪᴏɴ ᴀɴᴅ ʀᴇꜱᴘᴏɴꜱᴇ ᴛɪᴍᴇ
     const caption = `
-🌸 ʜᴇʏ *${pushname}*~!  
-╰─➤ ɪ'ᴍ ᴀʟɪᴠᴇ, ᴀᴡᴀᴋᴇ ✨ ᴀɴᴅ ʀᴇᴀᴅʏ ᴛᴏ ꜱᴇʀᴠᴇ ~ 💖
+*ʜᴇʟʟᴏ ${pushname}! ɪ'ᴍ ᴀʟɪᴠᴇ ᴀɴᴅ ᴋɪᴄᴋɪɴɢ!*
 
-╭───★ ✿ *Cyberia-MD Status* ✿ ★───╮
-│ 🍡 *ɴᴀᴍᴇ*      : Cyberia-MD 
-│ 👑 *ᴄʀᴇᴀᴛᴏʀ*   : Dev Sung
-│ ⚙️ *ᴠᴇʀꜱɪᴏɴ*   : ${config.version || '2.5.0'}
-│ 📂 *ꜱᴄʀɪᴘᴛ*    : ᴘʟᴜɢɪɴꜱ
-│ 🕒 *ʀᴇꜱᴘᴏɴꜱᴇ* : ${getResponseTime(startTime)} ms ⚡
-╰───────────🌸───────╯
+╭──❍〘 Cyberia-MD 〙
+│ ✨ *ɴᴀᴍᴇ*: Cyberia-MD 
+│ 👑 *ᴄʀᴇᴀᴛᴏʀ*: Dev Sung
+│ ⚙️ *ᴠᴇʀꜱɪᴏɴ*: ${config.version || '2.5.0'}
+│ 📂 *ꜱᴄʀɪᴘᴛ ᴛʏᴘᴇ*: ᴘʟᴜɢɪɴꜱ
+│ 🕒 *ʀᴇꜱᴘᴏɴꜱᴇ ᴛɪᴍᴇ*: ${getResponseTime(startTime)} ᴍꜱ
+╰──────────────⭑
 
-🍀 *I’m your kawaii WhatsApp assistant!*  
-Helping with ✨ data, 📰 searches & more 💫
+🧠 ɪ'ᴍ ʏᴏᴜʀ ᴡʜᴀᴛꜱᴀᴘᴘ ᴀꜱꜱɪꜱᴛᴀɴᴛ ꜰᴏʀ ᴅᴀᴛᴀ ʀᴇᴛʀɪᴇᴠᴀʟ, ꜱᴇᴀʀᴄʜᴇꜱ, ᴀɴᴅ ᴍᴏʀᴇ!
 
-🌸 *Rules of the bot* 🌸
-1. 🚫 ɴᴏ ꜱᴘᴀᴍᴍɪɴɢ  
-2. 🚫 ɴᴏ ᴅɪʀᴇᴄᴛ ᴄᴀʟʟꜱ  
-3. 🚫 ᴅᴏɴ'ᴛ ʙᴏᴛʜᴇʀ ᴏᴡɴᴇʀ  
-4. 💖 ᴜꜱᴇ ᴍᴇ ᴡɪᴛʜ ʀᴇꜱᴘᴇᴄᴛ  
+*📜 ʀᴜʟᴇꜱ:*
+1. 🚫 ɴᴏ ꜱᴘᴀᴍᴍɪɴɢ
+2. 🚫 ɴᴏ ᴅɪʀᴇᴄᴛ ᴄᴀʟʟꜱ ᴛᴏ ᴛʜᴇ ʙᴏᴛ
+3. 🚫 ɴᴏ ᴄᴏɴᴛᴀᴄᴛɪɴɢ ᴛʜᴇ ᴏᴡɴᴇʀ
+4. 🚫 ɴᴏ ꜱᴘᴀᴍᴍɪɴɢ ᴛʜᴇ ᴏᴡɴᴇʀ
 
-🎀 ᴛʏᴘᴇ *.ᴀʟʟᴍᴇɴᴜ* ᴛᴏ ᴇxᴘʟᴏʀᴇ ✨  
+🔖 ᴛʏᴘᴇ *.ᴀʟʟᴍᴇɴᴜ* ᴛᴏ ᴇxᴘʟᴏʀᴇ ᴀʟʟ ᴄᴏᴍᴍᴀɴᴅꜱ.
 
-© ${new Date().getFullYear()} ✿ Dev Sung ✿
+© ${new Date().getFullYear()} Dev Sung
     `.trim();
 
-    // ᴠᴀʟɪᴅᴀᴛᴇ ɪᴍᴀɢᴇ ᴜʀʟ
+    // ᴠᴀʟɪᴅᴀᴛᴇ ɪᴍᴀɢᴇ ᴜʀʟ ʙᴇꜰᴏʀᴇ ꜱᴇɴᴅɪɴɢ
     const imageUrl = 'https://files.catbox.moe/v2f5bk.jpg';
     try {
-      await axios.head(imageUrl);
+      await axios.head(imageUrl); // ᴄʜᴇᴄᴋ ɪꜰ ɪᴍᴀɢᴇ ᴜʀʟ ɪꜱ ᴀᴄᴄᴇꜱꜱɪʙʟᴇ
     } catch (imgErr) {
       console.warn('ɪᴍᴀɢᴇ ᴜʀʟ ɪɴᴀᴄᴄᴇꜱꜱɪʙʟᴇ:', imgErr.message);
-      return reply('⚠️ ᴜɴᴀʙʟᴇ ᴛᴏ ʟᴏᴀᴅ ʙᴏᴛ ɪᴍᴀɢᴇ. ʙᴏᴛ ɪꜱ ᴀʟɪᴠᴇ, ʙᴜᴛ ɪᴍᴀɢᴇ ꜰᴀɪʟᴇᴅ 🌸');
+      return reply('⚠️ ᴜɴᴀʙʟᴇ ᴛᴏ ʟᴏᴀᴅ ʙᴏᴛ ɪᴍᴀɢᴇ. ʙᴏᴛ ɪꜱ ᴀʟɪᴠᴇ, ʙᴜᴛ ɪᴍᴀɢᴇ ᴅɪꜱᴘʟᴀʏ ꜰᴀɪʟᴇᴅ.');
     }
 
-    // ꜱᴇɴᴅ ᴍᴇꜱꜱᴀɢᴇ
+    // ꜱᴇɴᴅ ᴍᴇꜱꜱᴀɢᴇ ᴡɪᴛʜ ɪᴍᴀɢᴇ ᴀɴᴅ ᴄᴀᴘᴛɪᴏɴ
     await malvin.sendMessage(from, {
       image: { url: imageUrl },
       caption,
@@ -64,13 +62,14 @@ Helping with ✨ data, 📰 searches & more 💫
         isForwarded: true,
         forwardedNewsletterMessageInfo: {
           newsletterJid: '120363402507750390@newsletter',
-          newsletterName: '🌸 sung ᴛᴇᴄʜ 🌸',
+          newsletterName: 'sung ᴛᴇᴄʜ',
           serverMessageId: 143
         }
       }
     }, { quoted: mek });
 
   } catch (err) {
+    // ɪᴍᴘʀᴏᴠᴇᴅ ᴇʀʀᴏʀ ʜᴀɴᴅʟɪɴɢ ᴡɪᴛʜ ꜱᴘᴇᴄɪꜰɪᴄ ᴍᴇꜱꜱᴀɢᴇꜱ
     console.error('ᴇʀʀᴏʀ ɪɴ ʟɪᴠᴇ ᴄᴏᴍᴍᴀɴᴅ:', err);
     const errorMessage = err.message.includes('network')
       ? '⚠️ ɴᴇᴛᴡᴏʀᴋ ɪꜱꜱᴜᴇ ᴅᴇᴛᴇᴄᴛᴇᴅ. ᴘʟᴇᴀꜱᴇ ᴛʀʏ ᴀɢᴀɪɴ ʟᴀᴛᴇʀ.'
