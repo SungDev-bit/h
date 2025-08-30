@@ -18,10 +18,10 @@ const emojiSets = {
         '▰▰▰▰▱▱▱▱▱▱'
     ],
     status: [
-        { threshold: 0.3, text: '✨ Super Fast ✨' },
-        { threshold: 0.6, text: '⚡ Fast ⚡' },
-        { threshold: 1.0, text: '⚠️ Medium ⚠️' },
-        { threshold: Infinity, text: '🐢 Slow 🐢' }
+        { threshold: 0.3, text: '🚀 Super Fast' },
+        { threshold: 0.6, text: '⚡ Fast' },
+        { threshold: 1.0, text: '⚠️ Medium' },
+        { threshold: Infinity, text: '🐢 Slow' }
     ]
 };
 
@@ -30,7 +30,7 @@ malvin({
     alias: ['speed', 'pong','p'],
     desc: 'Check bot\'s response time and status',
     category: 'main',
-    react: '🌸',
+    react: '⚡',
     filename: __filename
 }, async (malvin, mek, m, { from, sender, reply }) => {
     try {
@@ -58,7 +58,7 @@ malvin({
         const responseTime = Number(process.hrtime.bigint() - start) / 1e9;
 
         // Determine status based on response time
-        const statusText = emojiSets.status.find(s => responseTime < s.threshold)?.text || '🐢 Slow 🐢';
+        const statusText = emojiSets.status.find(s => responseTime < s.threshold)?.text || '🐢 Slow';
 
         // Time info (cache formatting for performance)
         const timezone = config.TIMEZONE || 'Africa/Harare';
@@ -86,28 +86,28 @@ malvin({
 
         // Owner & bot name
         const ownerName = config.OWNER_NAME || 'Dev Sung';
-        const botName = config.BOT_NAME || 'Cyberia-MD';
-        const repoLink = config.REPO || 'https://github.com/NaCkS-ai/Cyberia-MD';
+        const botName = config.BOT_NAME || 'Cyberia-MD;
+        const repoLink = config.REPO || 'https://github.com/NaCkS-ai/Cyberia-MD;
 
-        // Final output - anime-style
+        // Final output
         const pingMsg = `
 
-🌸 ･ﾟ✧ *${statusText}* ✧ﾟ･🌸
+*${statusText}*
 
-⚡ \`Response Time:\` ${responseTime.toFixed(2)}s  
-⏰ \`Time:\` ${time} (${timezone})  
-📅 \`Date:\` ${date}  
-⏱️ \`Uptime:\` ${uptime}  
-💾 \`Memory Usage:\` ${memoryUsage}  
-🖥️ \`Node Version:\` ${nodeVersion}  
+⚡ \`Response Time:\` ${responseTime.toFixed(2)}s
+⏰ \`Time:\` ${time} (${timezone})
+📅 \`Date:\` ${date}
+⏱️ \`Uptime:\` ${uptime}
+💾 \`Memory Usage:\` ${memoryUsage}
+🖥️ \`Node Version:\` ${nodeVersion}
 
-💻 \`Developer:\` ${ownerName}  
-🤖 \`Bot Name:\` ${botName}  
+💻 \`Developer:\` ${ownerName}
+🤖 \`Bot Name:\` ${botName}
 
-🌟 Don’t forget to *star* & *fork* the repo!  
+🌟 Don't forget to *star* & *fork* the repo!
 🔗 ${repoLink}
 
-${loadingBar} ✨✨
+${loadingBar}
 `.trim();
 
         // Send message with retry
@@ -122,7 +122,7 @@ ${loadingBar} ✨✨
                         isForwarded: true,
                         forwardedNewsletterMessageInfo: {
                             newsletterJid: '120363402507750390@newsletter',
-                            newsletterName: `🌸 ${botName} 🌸`,
+                            newsletterName: `🚀 ${botName} 🚀`,
                             serverMessageId: 143
                         }
                     }
@@ -139,7 +139,7 @@ ${loadingBar} ✨✨
 
     } catch (e) {
         console.error('❌ Ping command error:', e);
-        await reply(`(╥﹏╥) Oops! Anime Ping Error: ${e.message || 'Something went wrong 💦'}`);
+        await reply(`❌ Error: ${e.message || 'Failed to process ping command'}`);
         await malvin.sendMessage(from, { react: { text: '❌', key: mek.key } });
     }
 });
