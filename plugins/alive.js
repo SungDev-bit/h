@@ -33,20 +33,20 @@ malvin({
             }).join("");
 
         const msg = `
-╭─❖ 🌸「 *${toTinyCap("cyberia status")}* 」🌸 ❖─╮
+╭──❖ 「 *${toTinyCap("cyberia status")}* 」 ❖─
 │
-│ ✨ ᴋᴏɴɴɪᴄʜɪᴡᴀ, *${pushname}* ~ (≧▽≦)/
+│ 👤 ʜɪ: *${pushname}*
 │ 🕓 ᴛɪᴍᴇ: *${currentTime}*
 │ 📆 ᴅᴀᴛᴇ: *${currentDate}*
-│ ⏳ ᴜᴘᴛɪᴍᴇ: *${uptime}*
+│ 🧭 ᴜᴘᴛɪᴍᴇ: *${uptime}*
 │ ⚙️ ᴍᴏᴅᴇ: *${config.MODE}*
 │ 🔰 ᴠᴇʀsɪᴏɴ: *${config.version}*
 │
-╰─❖──────────────❖─╯
+╰─────────❖
 
-🌸 *Cyberia is Alive!* 🌸
-⚔️ *System Status:* Stable ⚡
-💫 *All set & ready to serve, Senpai!* (✿◠‿◠)
+✅ *cyberia is alive & operational!*
+🚀 *System: Stable & running smooth!*
+✨ *Thank you for checking in!*
         `.trim();
 
         await malvin.sendMessage(from, {
