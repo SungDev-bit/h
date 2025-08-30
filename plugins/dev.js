@@ -22,26 +22,24 @@ malvin({
     const name = pushname || "there";
 
     const caption = `
-╭─❖ 🌸「 *${tinyCaps("Cyberia Developer")}* 」🌸 ❖─╮
+╭─⌈ *👨‍💻 ${tinyCaps("Cyberia developer")}* ⌋─
 │
-│ (≧▽≦)/~ ʜᴇʟʟᴏ *${name}*!
+│ 👋 Hello, *${name}*!
 │
-│ 💻 *Dev Sung* is the creator of this bot ✨
-│    Bringing anime vibes into Cyberia ⚡
+│ 🤖 I'm *Dev Sung*, the creator & maintainer
+│    of this smart WhatsApp bot.
 │
-│ 👑 *OWNER INFO*
-│ ────────────────
-│ 🧠 ɴᴀᴍᴇ   : Dev Sung
-│ 🎂 ᴀɢᴇ    : 20+
-│ 📞 ᴄᴏɴᴛᴀᴄᴛ : wa.me/12363621958
-│ 📺 ʏᴏᴜᴛᴜʙᴇ : 🌸 Updates & Guides
-│              https://youtube.com/@malvintech2
+│ 👨‍💻 *OWNER INFO:*
+│ ───────────────
+│ 🧠 Name    : Dev Sung
+│ 🎂 Age     : 20+
+│ 📞 Contact : wa.me/12363621958
+│ 📺 YouTube : for updates
+│            https://youtube.com/@malvintech2
 │
-╰─❖───────────────❖─╯
+╰───────────────
 
-🌸 *Arigatou for checking, Senpai!* 🌸
-⚔️ *Powered by Cyberia-MD* ⚔️
-(✿◠‿◠) ~ Sᴛᴀʏ Oᴛᴀᴋᴜ 💮
+> ⚡ *Powered by cyberia*
 `.trim();
 
     await malvin.sendMessage(
@@ -59,8 +57,8 @@ malvin({
             serverMessageId: 143
           },
           externalAdReply: {
-            title: "Cyberia-MD Bot 🌸",
-            body: "Created with ❤️ by Dev Sung",
+            title: "Cyberia-MD Bot",
+            body: "Created with ❤️ by dev sung",
             thumbnailUrl: 'https://files.catbox.moe/lvomei.jpg',
             mediaType: 1,
             renderSmallerThumbnail: true,
