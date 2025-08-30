@@ -24,29 +24,27 @@ const toTinyCaps = (str) => {
     .join('');
 };
 
-// ✨ Anime-style Alive Status ✨
+// Format status info with tiny caps
 const formatStatusInfo = (pushname, harareTime, harareDate, runtimeHours, runtimeMinutes, runtimeSeconds, config) => `
-╭─❖ 🌸 *Ａｎｉｍｅ Ａｌｉｖｅ Ｓｔａｔｕｓ* 🌸 ❖─╮
+╭──〔 🔥 ᴀʟɪᴠᴇ sᴛᴀᴛᴜs 🥰 〕──
 │
-│ (≧▽≦)/~ ʜᴇʟʟᴏ, *${pushname}*! 💮
+├─ 👋 ʜɪ, ${pushname} 🙃
 │
-│ ⏰ ᴛɪᴍᴇ: *${harareTime}*
-│ 📆 ᴅᴀᴛᴇ: *${harareDate}*
-│ ⏳ ᴜᴘᴛɪᴍᴇ: *${runtimeHours}ʜ ${runtimeMinutes}ᴍ ${runtimeSeconds}s*
-│ 💾 ʀᴀᴍ: ${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}ᴍʙ / ${Math.round(os.totalmem() / 1024 / 1024)}ᴍʙ
+├─ ⏰ ᴛɪᴍᴇ: ${harareTime}
+├─ 📆 ᴅᴀᴛᴇ: ${harareDate}
+├─ ⏳ ᴜᴘᴛɪᴍᴇ: ${runtimeHours} ʜʀs, ${runtimeMinutes} ᴍɪɴs, ${runtimeSeconds} sᴇᴄs
+├─ 🧩 ʀᴀᴍ ᴜsᴀɢᴇ: ${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}ᴍʙ / ${Math.round(os.totalmem() / 1024 / 1024)}ᴍʙ
 │
-│ ⚠️ *Ｎｏｔｉｃｅ* ⚠️
-│ Use this bot wisely, Senpai~
-│ I won’t take responsibility if
-│ Wʜᴀᴛsᴀᴘᴘ-sama gets angry (╥﹏╥)
+├─ 📢 ɴᴏᴛɪᴄᴇ:
+│   ɪ ᴀᴍ ɴᴏᴛ ʀᴇsᴘᴏɴsɪʙʟᴇ ғᴏʀ ᴀɴʏ
+│   ᴡʜᴀᴛsᴀᴘᴘ ʙᴀɴs ᴛʜᴀᴛ ᴍᴀʏ ᴏᴄᴄᴜʀ
+│   ᴅᴜᴇ ᴛᴏ ᴛʜᴇ ᴜsᴀɢᴇ ᴏғ ᴛʜɪs ʙᴏᴛ.
+│   ᴜsᴇ ɪᴛ ᴡɪsᴇʟʏ ᴀɴᴅ ᴀᴛ ʏᴏᴜʀ ᴏᴡɴ ʀɪsᴋ ⚠️
 │
-│ 🔗 ʀᴇᴘᴏ: ${config.REPO}
+├─ 🔗 ${config.REPO}
 │
-╰─❖──────────────❖─╯
-
-🌸 *Cyberia-MD is Alive!* 🌸  
-⚔️ Sʏsᴛᴇᴍ: Stable & Running Smooth  
-(✿◠‿◠)ﾉﾞ Stay Otaku, Senpai 💮
+╰───〔 🥰 〕───
+> ᴘᴏᴡᴇʀᴇᴅ ʙʏ Cyberia-MD
 `.trim();
 
 malvin({
@@ -89,7 +87,7 @@ malvin({
         isForwarded: true,
         forwardedNewsletterMessageInfo: {
           newsletterJid: NEWSLETTER_JID,
-          newsletterName: toTinyCaps('🌸 Cyberia-MD ⚔️'),
+          newsletterName: toTinyCaps('🔥 Cyberia-MD🥰'),
           serverMessageId: 143,
         },
       },
