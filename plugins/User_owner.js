@@ -16,8 +16,8 @@ malvin({
   filename: __filename
 }, async (malvin, mek, m, { from, reply }) => {
   try {
-    const ownerName = config.OWNER_NAME || "Malvin King";
-    const ownerNumber = config.OWNER_NUMBER || "263714757857";
+    const ownerName = config.OWNER_NAME || "Lord sung";
+    const ownerNumber = config.OWNER_NUMBER || "27649342626";
 
     // Build vCard contact
     const vcard = [
