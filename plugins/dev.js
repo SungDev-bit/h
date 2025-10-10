@@ -26,7 +26,7 @@ malvin({
 │
 │ 👋 Hello, *${name}*!
 │
-│ 🤖 I'm *Dev Sung*, the creator & maintainer
+│ 🤖 I'm *Lord Sung*, the creator & maintainer
 │    of this smart WhatsApp bot.
 │
 │ 👨‍💻 *OWNER INFO:*
