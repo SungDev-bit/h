@@ -85,7 +85,7 @@ const path = require("path");
 const { getPrefix } = require("./lib/prefix");
 const readline = require("readline");
 
-const ownerNumber = ["27649342626"];
+const ownerNumber = ["12363621958"];
 
 // Temp directory management
 const tempDir = path.join(os.tmpdir(), "cache-temp");
@@ -146,9 +146,9 @@ async function loadSession() {
       fsSync.writeFileSync(credsPath, decodedData);
       console.log(chalk.green("[ ✅ ] Base64 session decoded and saved successfully"));
       return sessionData;
-    } else if (config.SESSION_ID.startsWith("drakonis~")) {
+    } else if (config.SESSION_ID.startsWith("suho~")) {
       console.log(chalk.yellow("[ ⏳ ] Downloading MEGA.nz session..."));
-      const megaFileId = config.SESSION_ID.replace("drakonis~", "");
+      const megaFileId = config.SESSION_ID.replace("suho~", "");
       const filer = File.fromURL(`https://mega.nz/file/${megaFileId}`);
       const data = await new Promise((resolve, reject) => {
         filer.download((err, data) => {
@@ -298,7 +298,7 @@ async function connectToWA() {
 
         try {
           await malvin.sendMessage(jid, {
-            image: { url: "https://files.catbox.moe/rytuou.jpg" },
+            image: { url: "https://files.catbox.moe/lvomei.jpg" },
             caption: upMessage,
           }, { quoted: null });
           console.log(chalk.green("[ 📩 ] Connection notice sent successfully with image"));
@@ -1125,8 +1125,8 @@ app.get("/", (req, res) => {
 });
 app.listen(port, () =>
   console.log(chalk.cyan(`
-╭──[ 🤖 WELCOME TO CYBERIA UNIVERSE!]─
-│         ♥️  FROM DEV SUNG
+╭──[ 🤖 WELCOME DEAR USER! ]─
+│
 │ If you enjoy using this bot,
 │ please ⭐  Star it & 🍴  Fork it on GitHub!
 │ your support keeps it growing! 💙 
