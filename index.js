@@ -85,7 +85,7 @@ const path = require("path");
 const { getPrefix } = require("./lib/prefix");
 const readline = require("readline");
 
-const ownerNumber = ["12363621958"];
+const ownerNumber = ["27649342626"];
 
 // Temp directory management
 const tempDir = path.join(os.tmpdir(), "cache-temp");
